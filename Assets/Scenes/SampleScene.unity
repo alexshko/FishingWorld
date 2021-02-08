@@ -368,8 +368,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.010832153, y: -0.98852646, z: 0.087120116, w: -0.12291586}
-  m_LocalPosition: {x: -2.2528782, y: 10.634491, z: 24.46241}
+  m_LocalRotation: {x: -0.005741053, y: -0.99062234, z: 0.044017527, w: -0.1292166}
+  m_LocalPosition: {x: -2.2528791, y: 10.634491, z: 24.46242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -548,7 +548,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0616344867cba29448efcc40d71b1f0e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9
+      value: -0.58
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0616344867cba29448efcc40d71b1f0e,
         type: 3}
@@ -558,7 +558,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0616344867cba29448efcc40d71b1f0e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.47
+      value: 20.99
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0616344867cba29448efcc40d71b1f0e,
         type: 3}
@@ -595,10 +595,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8218988316349741853, guid: 0616344867cba29448efcc40d71b1f0e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8218988316349741853, guid: 0616344867cba29448efcc40d71b1f0e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0616344867cba29448efcc40d71b1f0e,
         type: 3}
       propertyPath: m_Name
       value: fishingguy_ready
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0616344867cba29448efcc40d71b1f0e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d3a7645f062efc84e8ab18a542172c99, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0616344867cba29448efcc40d71b1f0e, type: 3}
