@@ -20,6 +20,8 @@
 [Aa]ssets/Plugins/Editor/JetBrains*
 #Assets from unity assetstore.
 [Aa]ssets/[Aa]ssets/*
+[Aa]ssets/LoginAssets/*
+[Aa]ssets/Plugins/*
 
 # Visual Studio cache directory
 .vs/
