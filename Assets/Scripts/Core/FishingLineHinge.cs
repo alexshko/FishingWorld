@@ -10,7 +10,7 @@ namespace alexshko.fishingworld.Enteties.FishingLine
         [Tooltip("the top of the fishing rod so it will always update its place there")]
         public Transform FishingRodTop;
 
-        private float initFishDistance = 15;
+        private float initFishDistance = 2.5f;
 
         private void Awake()
         {
@@ -22,7 +22,7 @@ namespace alexshko.fishingworld.Enteties.FishingLine
             //FishPoint.position = transform.position + transform.forward * initDist;
 
             //put the fish in intial place.
-            FishPoint.position = transform.position - transform.right * (initDist/Mathf.Sqrt(2)) - transform.up* (initDist / Mathf.Sqrt(2));
+            FishPoint.position = transform.position - transform.right * 0.2f - transform.up* (initDist / Mathf.Sqrt(2));
         }
 
         // Update is called once per frame
