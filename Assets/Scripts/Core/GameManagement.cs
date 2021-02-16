@@ -1,32 +1,31 @@
-﻿using System.Collections;
+﻿using alexshko.fishingworld.Enteties.FisherGuy;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManagement : MonoBehaviour
+namespace alexshko.fishingworld.Core
 {
-    public static GameManagement Instance;
-
-    public Transform FisherGuy;
-
-    [Tooltip("the place to cast the rod")]
-    public Transform FishingSpot;
-
-    private void Awake()
+    public class GameManagement : MonoBehaviour
     {
-        Instance = this;
-    }
+        public static GameManagement Instance;
 
-    private void Start()
-    {
-        
-    }
+        public Transform FisherGuy;
 
-    public void CastRod()
-    {
-        Debug.LogFormat("cast a rod");
-        if (FishingSpot)
+        [Tooltip("the place to cast the rod")]
+        public Transform FishingSpot;
+
+        private void Awake()
         {
-            FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
+            Instance = this;
+        }
+
+        public void CastRod()
+        {
+            Debug.LogFormat("cast a rod");
+            if (FishingSpot)
+            {
+                FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
+            }
         }
     }
 }

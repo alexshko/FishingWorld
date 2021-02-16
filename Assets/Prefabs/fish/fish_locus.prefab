@@ -94,8 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36392b98654d2ef47b4f56167f4bcc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Locus
-  DiffucltyToCatch: 1.5
-  popularity: 80
-  CoinsWorth: 100
-  RoyalStarsWorth: 1
+  FishData: {fileID: 11400000, guid: 35cdea296345bfb418f6cbd82f12def4, type: 2}
+  weight: 0

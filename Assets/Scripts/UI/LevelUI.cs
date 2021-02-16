@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class LevelUI : MonoBehaviour
+namespace alexshko.fishingworld.UI
 {
-    public void btnLevelStart()
+    public class LevelUI : MonoBehaviour
     {
-        Debug.Log("pressed button play");
-        if (GameManagement.Instance)
+        public void btnLevelStart()
         {
-            //deactivate the button:
-            EventSystem.current.currentSelectedGameObject.SetActive(false);
-            //make the person cast a rod:
-            GameManagement.Instance.CastRod();
+            Debug.Log("pressed button play");
+            if (Core.GameManagement.Instance)
+            {
+                //deactivate the button:
+                EventSystem.current.currentSelectedGameObject.SetActive(false);
+                //make the person cast a rod:
+                Core.GameManagement.Instance.CastRod();
+            }
         }
     }
 }

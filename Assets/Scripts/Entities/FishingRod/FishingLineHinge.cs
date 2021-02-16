@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace alexshko.fishingworld.Enteties.FishingLine
+namespace alexshko.fishingworld.Enteties.FishingRod
 {
     public class FishingLineHinge : MonoBehaviour
     {
