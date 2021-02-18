@@ -1,4 +1,6 @@
-﻿using alexshko.fishingworld.Enteties.FisherGuy;
+﻿using alexshko.fishingworld.Enteties.Fish;
+using alexshko.fishingworld.Enteties.FisherGuy;
+using alexshko.fishingworld.Enteties.Lake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +12,29 @@ namespace alexshko.fishingworld.Core
     {
         public static GameManagement Instance;
 
-        public Transform FisherGuy;
 
+        #region attributes 
+
+        public Transform FisherGuy;
+        public Lake LevelLake;
         [Tooltip("the place to cast the rod")]
         public Transform FishingSpot;
+        #endregion
+
+
+        #region private attributes for calculating the frequancy
+
+        private Dictionary<ScriptableObjectFish, float> FishFrequancy;
+        #endregion
 
         private void Awake()
         {
             Instance = this;
+        }
+
+        private void Start()
+        {
+            UpdateFishCatchingFrequancy();
         }
 
         public void CastRod()
@@ -26,14 +43,54 @@ namespace alexshko.fishingworld.Core
             if (FishingSpot)
             {
                 FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
+                ScriptableObjectFish fishObj = ChooseRandomFish();
             }
         }
 
         //a function that chooses a fish to be caught.
         //consideraing the popularity of the fish in the lake, the rod, the bait and etc.
-        public void RandomizeAFish()
+        private void UpdateFishCatchingFrequancy()
         {
+            //make a dictionary of all fish and their popularity:
+            float sum = 0;
+            FishFrequancy = new Dictionary<ScriptableObjectFish, float>();
+            foreach (KeyValuePair<ScriptableObjectFish, float> item in LevelLake.FishPopularityDict)
+            {
+                if (FishFrequancy.ContainsKey(item.Key))
+                {
+                    FishFrequancy[item.Key] += item.Value;
+                }
+                else
+                {
+                    FishFrequancy[item.Key] = item.Value;
+                }
+                sum += item.Value;
+            }
 
+            //Normalize the prop and make it Cumulative:
+            ScriptableObjectFish prev = null;
+            List<ScriptableObjectFish> keys = new List<ScriptableObjectFish>(FishFrequancy.Keys);
+            foreach (ScriptableObjectFish item in keys)
+            {
+                //Normalize:
+                FishFrequancy[item] = FishFrequancy[item] / sum;
+                //add the previous value so that the propabilities will be Cumulative.
+                if (prev)
+                {
+                    FishFrequancy[item] += FishFrequancy[prev];
+                }
+                prev = item;
+            }
+        }
+
+        private ScriptableObjectFish ChooseRandomFish()
+        {
+            float rnd = Random.value;
+            foreach (var item in FishFrequancy)
+            {
+                if (item.Value > rnd) return item.Key;
+            }
+            return null;
         }
     }
 }

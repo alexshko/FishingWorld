@@ -18,15 +18,17 @@ namespace alexshko.fishingworld.Enteties.Fish
         [SerializeField]
         private FishPopularity[] FishPopularity;
 
-        public Dictionary<ScriptableObjectFish, float> FishPopularityDict { get; }
+        private Dictionary<ScriptableObjectFish, float> fishpopularitydict;
+        public Dictionary<ScriptableObjectFish, float> FishPopularityDict { get { return fishpopularitydict; } }
 
         private void Awake()
         {
+            fishpopularitydict = new Dictionary<ScriptableObjectFish, float>();
             if (FishPopularity.Length > 0)
             {
                 for (int i = 0; i < FishPopularity.Length; i++)
                 {
-                    FishPopularityDict[FishPopularity[i].fish] = FishPopularity[i].popularity;
+                    fishpopularitydict[FishPopularity[i].fish] = FishPopularity[i].popularity;
                 }
             }
         }
