@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace alexshko.fishingworld.Core
 {
+
     public class GameManagement : MonoBehaviour
     {
         public static GameManagement Instance;
@@ -26,6 +27,13 @@ namespace alexshko.fishingworld.Core
             {
                 FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
             }
+        }
+
+        //a function that chooses a fish to be caught.
+        //consideraing the popularity of the fish in the lake, the rod, the bait and etc.
+        public void RandomizeAFish()
+        {
+
         }
     }
 }
