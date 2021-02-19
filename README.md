@@ -6,5 +6,5 @@ Fish, earn money, buy gear and Fish some more. <br/> <br/>
 the goal of the game is to earn the highest score, achieved by catching fish. <br/>
 Earn money and royal stars to buy gear so you can catch more fish (and more rare), Fish in different levels (lakes, rivers, seas) and advance in the woeld of fishing.
 
-![plot](Assets/image_007_0059.JPG)
-![plot](Assets/image_007_0043.JPG)
+![plot](Assets/Recordings/image_007_0059.JPG)
+![plot](Assets/Recordings/image_007_0043.JPG)
