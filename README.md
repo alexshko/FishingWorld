@@ -1,11 +1,10 @@
 # FishingWorld
 For Mobile. <br/>
-in development. <br/>
+the game is in development. <br/>
 Fish, earn money, buy gear and Fish some more. <br/> <br/>
 
 the goal of the game is to earn the highest score, achieved by catching fish. <br/>
-When the fish is more rare, the score is higher. <br/>
-You sell the fish you catch and use the money to buy better gear for fishing, like: rods, reel, hooks, lures and baits. <br/>
-There are several places to fish in, when you achieve the right score/goal. <br/>
+Earn money and royal stars to buy gear so you can catch more fish (and more rare), Fish in different levels (lakes, rivers, seas) and advance in the woeld of fishing.
 
-![plot](Pics/Level1.JPG)
+![plot](Assets/image_007_0059.JPG)
+![plot](Assets/image_007_0043.JPG)
