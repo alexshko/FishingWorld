@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,6 @@ namespace alexshko.fishingworld.Enteties
     public class FisherGuyController : MonoBehaviour
     {
         private Animator anim;
-        private float DistanceFromFishingPoint = 1.5f;
 
         public Transform FishLineHinge;
 
@@ -21,18 +21,18 @@ namespace alexshko.fishingworld.Enteties
             }
         }
 
-        public void PullRod(Vector3 PosToPull, Transform FishCaught)
+        public void PullRod(Transform FishCaught, Action FinishEvent)
         {
+            FishLineHinge.GetComponent<FishingLineHinge>().AttachFishToEndOfLine(FishCaught);
             anim.SetBool("RodCasted", false);
             anim.SetBool("FishCaught", (FishCaught!=null));
-            FishLineHinge.GetComponent<FishingLineHinge>().AttachFishToEndOfLine(FishCaught);
-            FishLineHinge.GetComponent<FishingLineHinge>().PullRod();
+            FishLineHinge.GetComponent<FishingLineHinge>().PullRod(FinishEvent);
         }
 
-        public void CastRod(Vector3 posToCast)
+        public void CastRod(Vector3 posToCast, Action FinishEvent)
         {
             anim.SetBool("RodCasted", true);
-            FishLineHinge.GetComponent<FishingLineHinge>().CastRod(posToCast);
+            FishLineHinge.GetComponent<FishingLineHinge>().CastRod(posToCast, FinishEvent);
         }
     }
 }

@@ -46,19 +46,28 @@ namespace alexshko.fishingworld.Core
             Debug.LogFormat("cast a rod");
             if (FishingSpot)
             {
-                FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
-                ScriptableObjectFish fishObj = ChooseRandomFish();
-                if (fishObj && fishObj.name!="None")
-                {
-                    GameObject rndob = Instantiate(fishObj.prefab, FishingSpot.position, Quaternion.identity, FishingSpot);
-                    CaughtFish = rndob.GetComponent<Transform>();
-                    //let the player pull the rod
-                }
-                else
-                {
-                    CaughtFish = null;
-                }
-                StartCoroutine(GetFishOutOfWater());
+                RandomizeFish();
+                FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position, PullFishFromWater);
+            }
+        }
+
+        private void PullFishFromWater()
+        {
+            StartCoroutine(GetFishOutOfWater());
+        }
+
+        private void RandomizeFish()
+        {
+            ScriptableObjectFish fishObj = ChooseRandomFish();
+            if (fishObj && fishObj.name != "None")
+            {
+                GameObject rndob = Instantiate(fishObj.prefab, FishingSpot.position, Quaternion.identity, FishingSpot);
+                CaughtFish = rndob.GetComponent<Transform>();
+                //let the player pull the rod
+            }
+            else
+            {
+                CaughtFish = null;
             }
         }
 
@@ -72,11 +81,15 @@ namespace alexshko.fishingworld.Core
             else
             {
                 Debug.LogFormat("a fish was caught: " + CaughtFish.GetComponent<Fish>().FishData.Name);
+                FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
             }
-            FisherGuy.GetComponent<FisherGuyController>().PullRod(FishingSpot.position, CaughtFish);
-            //action:
-            OnFinishedPullingFish(CaughtFish);
             yield return null;
+        }
+
+        private void HandleAfterFishPulled()
+        {
+            //call an action.
+            OnFinishedPullingFish(CaughtFish);
         }
 
         //a function that chooses a fish to be caught.

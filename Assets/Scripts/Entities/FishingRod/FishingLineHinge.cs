@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using alexshko.fishingworld.Enteties;
+using System;
+
 namespace alexshko.fishingworld.Enteties
 {
     public class FishingLineHinge : MonoBehaviour
@@ -16,8 +18,8 @@ namespace alexshko.fishingworld.Enteties
         [Tooltip("the top of the fishing rod so it will always update its place there")]
         public Transform FishingRodTop;
 
-        private bool isInLooseState;
         private Coroutine MovingAnim;
+        private Action OnCoroutineFinished;
 
 
         //private float initFishDistance = 2.5f;
@@ -35,7 +37,6 @@ namespace alexshko.fishingworld.Enteties
             //put the fish in intial place.
             //PutEndOfLineInNewPosition(EndOfLineLooseStancePosition.position);
             EndOfLine.position = EndOfLineLooseStancePosition.position;
-            isInLooseState = true;
         }
 
         //Update is called once per frame
@@ -65,7 +66,7 @@ namespace alexshko.fishingworld.Enteties
 
         private IEnumerator MoveLineBottomToPosAnim(Vector3 newPos)
         {
-            while (Vector3.Distance(EndOfLine.position, newPos) > 1.5f)
+            while (Vector3.Distance(EndOfLine.position, newPos) > 0.5f)
             {
                 EndOfLine.position = Vector3.Lerp(EndOfLine.position, newPos, Time.deltaTime);
                 //PutEndOfLineInNewPosition(EndOfLine.position);
@@ -73,11 +74,15 @@ namespace alexshko.fishingworld.Enteties
             }
             EndOfLine.position = newPos;
             yield return null;
+            if (OnCoroutineFinished != null)
+            {
+                OnCoroutineFinished();
+            }
         }
 
-        public void CastRod(Vector3 newPos)
+        public void CastRod(Vector3 newPos, Action FinishEvent)
         {
-            //isInLooseState = false;
+            OnCoroutineFinished = FinishEvent;
             if (MovingAnim!=null)
             {
                 StopCoroutine(MovingAnim);
@@ -85,10 +90,10 @@ namespace alexshko.fishingworld.Enteties
             MovingAnim = StartCoroutine(MoveLineBottomToPosAnim(newPos));
         }
 
-        public void PullRod()
+        public void PullRod(Action FinishEvent)
         {
             //isInLooseState = true;
-            CastRod(EndOfLineLooseStancePosition.position);
+            CastRod(EndOfLineLooseStancePosition.position, FinishEvent);
         }
 
         public void AttachFishToEndOfLine(Transform fish)

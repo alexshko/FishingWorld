@@ -993,11 +993,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FishPopularity:
   - fish: {fileID: 11400000, guid: 35cdea296345bfb418f6cbd82f12def4, type: 2}
-    popularity: 98
+    popularity: 1
   - fish: {fileID: 11400000, guid: 80d41cf9ae2319a46b1a161355b3fd6f, type: 2}
     popularity: 1
   - fish: {fileID: 11400000, guid: 9e7c2adb636272542bbd16d150a52ea7, type: 2}
-    popularity: 1
+    popularity: 98
 --- !u!1 &1385698936
 GameObject:
   m_ObjectHideFlags: 0
