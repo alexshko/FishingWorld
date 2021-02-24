@@ -1868,6 +1868,36 @@ Transform:
   m_Father: {fileID: 823324779978620011}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5753519805020934059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5307613282157257788}
+  m_Layer: 0
+  m_Name: StanceSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5307613282157257788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753519805020934059}
+  m_LocalRotation: {x: 0.000000037252896, y: 0.7487571, z: 0.000000029802315, w: 0.6628445}
+  m_LocalPosition: {x: -0.7157129, y: -0.3900636, z: 6.6655426}
+  m_LocalScale: {x: 25, y: 1, z: 25}
+  m_Children: []
+  m_Father: {fileID: 6320950100265528188}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5805470554332423101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,8 +2088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d90355a0c8bfb84e9896678b6b5fc9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FishPoint: {fileID: 6320950099629660948}
+  EndOfLine: {fileID: 6320950099629660948}
   RodFishingLine: {fileID: 8717614806941883078}
+  EndOfLineLooseStancePosition: {fileID: 5307613282157257788}
   FishingRodTop: {fileID: 6320950099753368510}
 --- !u!1 &6320950099629660944
 GameObject:
@@ -2184,7 +2215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6320950100265528188}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6320950100221289453
 GameObject:
@@ -2247,6 +2278,7 @@ Transform:
   m_LocalPosition: {x: -0.039, y: 0.003, z: -0}
   m_LocalScale: {x: 0.004, y: 0.10000002, z: 0.004}
   m_Children:
+  - {fileID: 5307613282157257788}
   - {fileID: 6320950099753368510}
   m_Father: {fileID: 8557175036367232313}
   m_RootOrder: 0

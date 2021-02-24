@@ -26,25 +26,13 @@ namespace alexshko.fishingworld.Enteties.FisherGuy
         {
             anim.SetBool("RodCasted", false);
             anim.SetBool("FishCaught", isFishCaught);
-            StartCoroutine(CastRodCo(FishLineHinge.GetComponent<FishingLineHinge>().NormalStanceToCast));
+            FishLineHinge.GetComponent<FishingLineHinge>().PullRod();
         }
 
         public void CastRod(Vector3 posToCast)
         {
             anim.SetBool("RodCasted", true);
-            StartCoroutine(CastRodCo(posToCast));
-        }
-
-        private IEnumerator CastRodCo(Vector3 posToCast)
-        {
-            Transform LineTip = FishLineHinge.GetComponent<FishingLineHinge>().EndOfLine;
-            while (Vector3.Distance(LineTip.position, posToCast) > DistanceFromFishingPoint)
-            {
-                LineTip.position = Vector3.Lerp(LineTip.position, posToCast, Time.deltaTime);
-                yield return null;
-            }
-            LineTip.position = posToCast;
-            yield return null;
+            FishLineHinge.GetComponent<FishingLineHinge>().CastRod(posToCast);
         }
     }
 }
