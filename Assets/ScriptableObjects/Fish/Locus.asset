@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 100
   Name: Locus
+  prefab: {fileID: 1942639122117973440, guid: 971dd00bc66219540bbee4f8ee179ea8, type: 3}
   DiffucltyToCatch: 5
   MaxWeight: 20
   CoinsWorth: 100

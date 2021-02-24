@@ -10,6 +10,13 @@ namespace alexshko.fishingworld.Enteties.Fish
         public int id;
         [Tooltip("the name of the fish")]
         public string Name;
+        //[Tooltip("the mesh of the fish")]
+        //public Mesh mesh;
+        //[Tooltip("the material of the fish")]
+        //public Material material;
+
+        [Tooltip("the prefab that uses this ScritableObject")]
+        public GameObject prefab;
         [Tooltip("How dificult to catch the fish. the higher the value the more it will fight before pulled out.")]
         [Range(0, 10)]
         public float DiffucltyToCatch;

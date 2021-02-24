@@ -993,11 +993,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FishPopularity:
   - fish: {fileID: 11400000, guid: 35cdea296345bfb418f6cbd82f12def4, type: 2}
-    popularity: 20
+    popularity: 98
   - fish: {fileID: 11400000, guid: 80d41cf9ae2319a46b1a161355b3fd6f, type: 2}
-    popularity: 10
+    popularity: 1
   - fish: {fileID: 11400000, guid: 9e7c2adb636272542bbd16d150a52ea7, type: 2}
-    popularity: 70
+    popularity: 1
 --- !u!1 &1385698936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,11 +1512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5106626848849456154, guid: 122b262837a316946aa6d078c6b26355,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 829fa1f4303535a4598532b8e3eb407f, type: 2}
     - target: {fileID: 5778751491410294522, guid: 122b262837a316946aa6d078c6b26355,
         type: 3}
       propertyPath: m_RootOrder
@@ -1571,16 +1566,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6320950100265528188, guid: 122b262837a316946aa6d078c6b26355,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.004
-      objectReference: {fileID: 0}
-    - target: {fileID: 6320950100265528188, guid: 122b262837a316946aa6d078c6b26355,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 6591562801875299392, guid: 122b262837a316946aa6d078c6b26355,
         type: 3}

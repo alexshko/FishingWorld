@@ -1,6 +1,7 @@
 ﻿using alexshko.fishingworld.Enteties.Fish;
 using alexshko.fishingworld.Enteties.FisherGuy;
 using alexshko.fishingworld.Enteties.Lake;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,10 @@ namespace alexshko.fishingworld.Core
         private Dictionary<ScriptableObjectFish, float> FishFrequancy;
         #endregion
 
+        private Transform CaughtFish;
+
+        public Action<Transform> OnFinishedPullingFish { get; set; }
+
         private void Awake()
         {
             Instance = this;
@@ -44,7 +49,35 @@ namespace alexshko.fishingworld.Core
             {
                 FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
                 ScriptableObjectFish fishObj = ChooseRandomFish();
+                if (fishObj && fishObj.name!="None")
+                {
+                    GameObject rndob = Instantiate(fishObj.prefab, FishingSpot.position, Quaternion.identity, FishingSpot);
+                    CaughtFish = rndob.GetComponent<Transform>();
+                    //let the player pull the rod
+                }
+                else
+                {
+                    CaughtFish = null;
+                }
+                StartCoroutine(GetFishOutOfWater());
             }
+        }
+
+        private IEnumerator GetFishOutOfWater()
+        {
+            yield return new WaitForSeconds(2f);
+            if (CaughtFish == null)
+            {
+                Debug.LogFormat("No fish was caught. try again");
+            }
+            else
+            {
+                Debug.LogFormat("a fish was caught: " + CaughtFish.GetComponent<Fish>().FishData.Name);
+            }
+            FisherGuy.GetComponent<FisherGuyController>().PullRod(FishingSpot.position, (CaughtFish!=null));
+            //action:
+            OnFinishedPullingFish(CaughtFish);
+            yield return null;
         }
 
         //a function that chooses a fish to be caught.
@@ -85,7 +118,7 @@ namespace alexshko.fishingworld.Core
 
         private ScriptableObjectFish ChooseRandomFish()
         {
-            float rnd = Random.value;
+            float rnd = UnityEngine.Random.value;
             foreach (var item in FishFrequancy)
             {
                 if (item.Value > rnd) return item.Key;
