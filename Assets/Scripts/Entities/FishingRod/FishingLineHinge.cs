@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-namespace alexshko.fishingworld.Enteties.FishingRod
+using alexshko.fishingworld.Enteties;
+namespace alexshko.fishingworld.Enteties
 {
     public class FishingLineHinge : MonoBehaviour
     {
@@ -88,6 +89,11 @@ namespace alexshko.fishingworld.Enteties.FishingRod
         {
             //isInLooseState = true;
             CastRod(EndOfLineLooseStancePosition.position);
+        }
+
+        public void AttachFishToEndOfLine(Transform fish)
+        {
+            fish.parent = EndOfLine;
         }
     }
 }

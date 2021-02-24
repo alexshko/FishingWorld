@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace alexshko.fishingworld.Enteties.Fish
+namespace alexshko.fishingworld.Enteties.Fishes
 {
     [CreateAssetMenu(fileName = "Fish", menuName = "ScriptableObjects/ScriptableObjectFish", order = 1)]
     public class ScriptableObjectFish : ScriptableObject

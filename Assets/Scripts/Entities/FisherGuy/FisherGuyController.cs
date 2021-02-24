@@ -1,9 +1,8 @@
-﻿using alexshko.fishingworld.Enteties.FishingRod;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace alexshko.fishingworld.Enteties.FisherGuy
+namespace alexshko.fishingworld.Enteties
 
 {
     public class FisherGuyController : MonoBehaviour
@@ -22,10 +21,11 @@ namespace alexshko.fishingworld.Enteties.FisherGuy
             }
         }
 
-        public void PullRod(Vector3 PosToPull, bool isFishCaught=false)
+        public void PullRod(Vector3 PosToPull, Transform FishCaught)
         {
             anim.SetBool("RodCasted", false);
-            anim.SetBool("FishCaught", isFishCaught);
+            anim.SetBool("FishCaught", (FishCaught!=null));
+            FishLineHinge.GetComponent<FishingLineHinge>().AttachFishToEndOfLine(FishCaught);
             FishLineHinge.GetComponent<FishingLineHinge>().PullRod();
         }
 

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace alexshko.fishingworld.Enteties.Fish {
+namespace alexshko.fishingworld.Enteties.Fishes {
     public class Fish : MonoBehaviour
     {
         //public int id;

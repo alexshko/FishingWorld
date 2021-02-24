@@ -1,6 +1,5 @@
-﻿using alexshko.fishingworld.Enteties.Fish;
-using alexshko.fishingworld.Enteties.FisherGuy;
-using alexshko.fishingworld.Enteties.Lake;
+﻿using alexshko.fishingworld.Enteties;
+using alexshko.fishingworld.Enteties.Fishes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,7 +73,7 @@ namespace alexshko.fishingworld.Core
             {
                 Debug.LogFormat("a fish was caught: " + CaughtFish.GetComponent<Fish>().FishData.Name);
             }
-            FisherGuy.GetComponent<FisherGuyController>().PullRod(FishingSpot.position, (CaughtFish!=null));
+            FisherGuy.GetComponent<FisherGuyController>().PullRod(FishingSpot.position, CaughtFish);
             //action:
             OnFinishedPullingFish(CaughtFish);
             yield return null;
