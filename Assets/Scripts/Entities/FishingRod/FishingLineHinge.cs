@@ -80,9 +80,8 @@ namespace alexshko.fishingworld.Enteties
             }
         }
 
-        public void CastRod(Vector3 newPos, Action FinishEvent)
+        public void CastRod(Vector3 newPos)
         {
-            OnCoroutineFinished = FinishEvent;
             if (MovingAnim!=null)
             {
                 StopCoroutine(MovingAnim);
@@ -90,15 +89,16 @@ namespace alexshko.fishingworld.Enteties
             MovingAnim = StartCoroutine(MoveLineBottomToPosAnim(newPos));
         }
 
-        public void PullRod(Action FinishEvent)
+        public void PullRod()
         {
             //isInLooseState = true;
-            CastRod(EndOfLineLooseStancePosition.position, FinishEvent);
+            CastRod(EndOfLineLooseStancePosition.position);
         }
 
         public void AttachFishToEndOfLine(Transform fish)
         {
             fish.parent = EndOfLine;
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using alexshko.fishingworld.Core;
+using UnityEngine;
 namespace alexshko.fishingworld.Enteties.Fishes {
     public class Fish : MonoBehaviour
     {
@@ -23,11 +24,43 @@ namespace alexshko.fishingworld.Enteties.Fishes {
         [SerializeField]
         private float weight;
 
+        private bool isCaught;
+
         private void Awake()
         {
             float max = FishData.MaxWeight;
             float min = 0.5f;
             weight = Random.Range(min, max);
+
+            isCaught = false;
+        }
+
+        private void Update()
+        {
+            if (!isCaught)
+            {
+                RaycastHit[] hits;
+                hits = Physics.SphereCastAll(transform.parent.position, 0.2f, transform.up, 0.2f);
+
+                if ((hits != null) && (hits.Length > 0))
+                {
+                    foreach (var hit in hits)
+                    {
+                        if (hit.collider.tag == "LineEnd")
+                        {
+                            AttachToLineEnd(hit.collider.transform);
+                            GameManagement.Instance.HandleFishCaught(transform);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AttachToLineEnd(Transform lineEnd)
+        {
+            transform.parent = lineEnd;
+            transform.localPosition = Vector3.zero;
+            isCaught = true;
         }
     }
 }

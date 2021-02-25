@@ -27,7 +27,7 @@ namespace alexshko.fishingworld.Core
         private Dictionary<ScriptableObjectFish, float> FishFrequancy;
         #endregion
 
-        private Transform CaughtFish;
+        public Transform CaughtFish { get; set; }
 
         public Action<Transform> OnFinishedPullingFish { get; set; }
 
@@ -47,51 +47,52 @@ namespace alexshko.fishingworld.Core
             if (FishingSpot)
             {
                 RandomizeFish();
-                FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position, PullFishFromWater);
+                FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
             }
         }
 
-        private void PullFishFromWater()
+        public void HandleFishCaught(Transform fish)
         {
-            StartCoroutine(GetFishOutOfWater());
+            CaughtFish = fish;
+            GetComponent<PullingMechanism>().enabled = true;
         }
 
-        private void RandomizeFish()
-        {
-            ScriptableObjectFish fishObj = ChooseRandomFish();
-            if (fishObj && fishObj.name != "None")
-            {
-                GameObject rndob = Instantiate(fishObj.prefab, FishingSpot.position, Quaternion.identity, FishingSpot);
-                CaughtFish = rndob.GetComponent<Transform>();
-                //let the player pull the rod
-            }
-            else
-            {
-                CaughtFish = null;
-            }
-        }
+        //private void PullFishFromWater()
+        //{
+        //    StartCoroutine(GetFishOutOfWater());
+        //}
 
-        private IEnumerator GetFishOutOfWater()
-        {
-            //wait fot fish to start biting:
-            yield return new WaitForSeconds(2f);
-            if (CaughtFish == null)
-            {
-                Debug.LogFormat("No fish was caught. try again");
-            }
-            else
-            {
-                Debug.LogFormat("a fish was caught: " + CaughtFish.GetComponent<Fish>().FishData.Name);
-                FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
-            }
-            yield return null;
-        }
+        
 
-        private void HandleAfterFishPulled()
-        {
-            //call an action.
-            OnFinishedPullingFish(CaughtFish);
-        }
+        //private IEnumerator GetFishOutOfWater()
+        //{
+        //    //wait for fish to start biting:
+        //    yield return new WaitForSeconds(2f);
+
+        //    //if a fish was caught:
+        //    if (CaughtFish == null)
+        //    {
+        //        Debug.LogFormat("No fish was caught. try again");
+        //    }
+        //    else
+        //    {
+
+
+        //        Debug.LogFormat("a fish was caught: " + CaughtFish.GetComponent<Fish>().FishData.Name);
+        //        //FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
+        //        GetComponent<PullingMechanism>().enabled = true;
+        //    }
+        //    yield return null;
+        //}
+
+        //private void HandleAfterFishPulled()
+        //{
+        //    //call an action.
+        //    OnFinishedPullingFish(CaughtFish);
+        //}
+
+
+
 
         //a function that chooses a fish to be caught.
         //consideraing the popularity of the fish in the lake, the rod, the bait and etc.
@@ -137,6 +138,20 @@ namespace alexshko.fishingworld.Core
                 if (item.Value > rnd) return item.Key;
             }
             return null;
+        }
+        private void RandomizeFish()
+        {
+            ScriptableObjectFish fishObj = ChooseRandomFish();
+            if (fishObj && fishObj.name != "None")
+            {
+                GameObject rndob = Instantiate(fishObj.prefab, FishingSpot.position, Quaternion.identity, FishingSpot);
+                CaughtFish = rndob.GetComponent<Transform>();
+                //let the player pull the rod
+            }
+            else
+            {
+                CaughtFish = null;
+            }
         }
     }
 }

@@ -21,18 +21,18 @@ namespace alexshko.fishingworld.Enteties
             }
         }
 
-        public void PullRod(Transform FishCaught, Action FinishEvent)
+        public void PullRod(Transform FishCaught)
         {
             FishLineHinge.GetComponent<FishingLineHinge>().AttachFishToEndOfLine(FishCaught);
             anim.SetBool("RodCasted", false);
             anim.SetBool("FishCaught", (FishCaught!=null));
-            FishLineHinge.GetComponent<FishingLineHinge>().PullRod(FinishEvent);
+            FishLineHinge.GetComponent<FishingLineHinge>().PullRod();
         }
 
-        public void CastRod(Vector3 posToCast, Action FinishEvent)
+        public void CastRod(Vector3 posToCast)
         {
             anim.SetBool("RodCasted", true);
-            FishLineHinge.GetComponent<FishingLineHinge>().CastRod(posToCast, FinishEvent);
+            FishLineHinge.GetComponent<FishingLineHinge>().CastRod(posToCast);
         }
     }
 }

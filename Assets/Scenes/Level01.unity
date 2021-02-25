@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pullingSlider: {fileID: 1431746833}
-  fishResistSlider: {fileID: 0}
+  fishResistSlider: {fileID: 2063532552}
 --- !u!1 &1421514318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1421,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6182178547182916646}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2063532552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6182178546465625646, guid: bfc03edac605ae6498487575b0c18934,
+    type: 3}
+  m_PrefabInstance: {fileID: 6182178547182916646}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656a9e9c3650bee479f002f909ea41a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2128076269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,30 +1675,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishResistentMeter
       objectReference: {fileID: 0}
-    - target: {fileID: 6182178546639443349, guid: bfc03edac605ae6498487575b0c18934,
+    - target: {fileID: 6182178546465625635, guid: bfc03edac605ae6498487575b0c18934,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6182178546639443349, guid: bfc03edac605ae6498487575b0c18934,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182178546639443349, guid: bfc03edac605ae6498487575b0c18934,
+        type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6182178546639443349, guid: bfc03edac605ae6498487575b0c18934,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6182178547647029750, guid: bfc03edac605ae6498487575b0c18934,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6182178547647029750, guid: bfc03edac605ae6498487575b0c18934,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfc03edac605ae6498487575b0c18934, type: 3}
@@ -1769,22 +1786,27 @@ PrefabInstance:
     - target: {fileID: 7977720856976339887, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7977720856976339887, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7977720856976339887, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7977720857337260042, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_Name
       value: PullRodStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977720857337260042, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7977720857337260043, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
@@ -1899,17 +1921,17 @@ PrefabInstance:
     - target: {fileID: 7977720858841426952, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7977720858841426952, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7977720858841426952, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9, type: 3}
