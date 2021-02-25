@@ -73,6 +73,7 @@ namespace alexshko.fishingworld.Core
 
         private IEnumerator GetFishOutOfWater()
         {
+            //wait fot fish to start biting:
             yield return new WaitForSeconds(2f);
             if (CaughtFish == null)
             {
