@@ -32,8 +32,14 @@ namespace alexshko.fishingworld.Core
         }
         private void OnDisable()
         {
-            pullingSlider.gameObject.SetActive(false);
-            fishResistSlider.gameObject.SetActive(false);
+            if (pullingSlider)
+            {
+                pullingSlider.gameObject.SetActive(false);
+            }
+            if (fishResistSlider)
+            {
+                fishResistSlider.gameObject.SetActive(false);
+            }
         }
 
         private IEnumerator HandleFishPulling()

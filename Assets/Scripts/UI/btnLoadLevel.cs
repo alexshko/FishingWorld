@@ -8,7 +8,7 @@ namespace alexshko.fishingworld.UI
 {
     public class btnLoadLevel : MonoBehaviour
     {
-        public static int FirstLevelIndex = 2;
+        public static int FirstLevelIndex = 1;
         public int Level;
 
         public void LoadLevelFromButton()

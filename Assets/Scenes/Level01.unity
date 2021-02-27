@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411411344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faa9e2ea2b959ba49a43e2ef6857ccbb, type: 3}
   m_Name: 
@@ -1783,30 +1783,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 82790968}
     m_Modifications:
-    - target: {fileID: 7977720856976339887, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720856976339887, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720856976339887, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7977720857337260042, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_Name
       value: PullRodStick
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720857337260042, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7977720857337260043, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
@@ -1846,7 +1826,7 @@ PrefabInstance:
     - target: {fileID: 7977720857337260043, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 7977720857337260043, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
@@ -1896,7 +1876,7 @@ PrefabInstance:
     - target: {fileID: 7977720857337260043, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -299
+      value: -494
       objectReference: {fileID: 0}
     - target: {fileID: 7977720857337260043, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
         type: 3}
@@ -1912,26 +1892,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720857337260052, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720858841426952, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720858841426952, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977720858841426952, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff66b1e9c1a9f8745a84b6a6fc480ba9, type: 3}
