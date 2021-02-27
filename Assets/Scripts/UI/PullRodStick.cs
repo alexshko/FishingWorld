@@ -13,11 +13,12 @@ namespace alexshko.fishingworld.UI
         [ColorUsageAttribute(true, true)]
         public Color animColor;
         public GameObject ArrowsReference;
-        public Action<int> OnCommitedSlide;
+        public Action OnCommitedSlide;
 
         private int PressedFingerId;
         private Image[] ImgsForAnim;
-        private int diffCount;
+        //private int diffCount;
+        private int AmountToAddResist = -1;
 
         private void Start()
         {
@@ -35,18 +36,16 @@ namespace alexshko.fishingworld.UI
                 {
                     Debug.LogFormat("the finger moved: {0}", Input.GetTouch(0).deltaPosition);
                     PressedFingerId = Input.GetTouch(0).fingerId;
-                    diffCount += Mathf.FloorToInt(Input.GetTouch(0).deltaPosition.x);
+                    //diffCount += Mathf.FloorToInt(Input.GetTouch(0).deltaPosition.x);
                 }
                 if (Input.GetTouch(0).phase == TouchPhase.Ended && Input.GetTouch(0).fingerId == PressedFingerId)
                 {
                     PressedFingerId = -1;
-                    OnCommitedSlide(Mathf.Abs(diffCount));
-                    diffCount = 0;
+                    OnCommitedSlide();
                 }
                 if (Input.GetTouch(0).phase == TouchPhase.Canceled && Input.GetTouch(0).fingerId == PressedFingerId)
                 {
                     PressedFingerId = -1;
-                    diffCount = 0;
                 }
                 //Debug.LogFormat("the value of the slider: {0}", GetComponent<Slider>().value);
                 //int value = Mathf.FloorToInt(GetComponent<Slider>().value);

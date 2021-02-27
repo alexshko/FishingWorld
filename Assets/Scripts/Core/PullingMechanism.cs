@@ -1,5 +1,7 @@
 ﻿using alexshko.fishingworld.Enteties;
+using alexshko.fishingworld.Enteties.Fishes;
 using alexshko.fishingworld.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +17,8 @@ namespace alexshko.fishingworld.Core
         private Transform FisherGuy;
         private Transform CaughtFish;
 
-        private int curResist;
+        private Coroutine FishResisting;
+        public int AmountToScutractFromPulling = 1;
 
         private void Awake()
         {
@@ -27,8 +30,22 @@ namespace alexshko.fishingworld.Core
             CaughtFish = GameManagement.Instance.CaughtFish;
             FisherGuy = GameManagement.Instance.FisherGuy;
 
-            pullingSlider.gameObject.SetActive(true);
-            fishResistSlider.gameObject.SetActive(true);
+            if (pullingSlider)
+            {
+                pullingSlider.gameObject.SetActive(true);
+            }
+            if (fishResistSlider)
+            {
+                fishResistSlider.gameObject.SetActive(true);
+            }
+
+            //start the Coroutine for handling the resistance of the fish.
+            //if the Fish Resistance Coroutine is active then it should restart.
+            if (FishResisting!=null)
+            {
+                StopCoroutine(FishResisting);
+            }
+            FishResisting = StartCoroutine(HandleFishPulling());
         }
         private void OnDisable()
         {
@@ -40,25 +57,45 @@ namespace alexshko.fishingworld.Core
             {
                 fishResistSlider.gameObject.SetActive(false);
             }
+            if (FishResisting != null)
+            {
+                StopCoroutine(FishResisting);
+            }
         }
 
         private IEnumerator HandleFishPulling()
         {
-            //while (FishIsHooked())
-            //{
-            //    MakeFishResist();
-            //    yield return null;
+            while (FishIsHooked())
+            {
+                MakeFishResist();
+                yield return null;
 
-            //}
-            yield return null;
+            }
+        }
+
+        private void MakeFishResist()
+        {
+            float resistInSecond = CaughtFish.GetComponent<Fish>().FishData.DiffucltyToCatch;
+            ResistValueUpdate(resistInSecond * Time.deltaTime);
+        }
+
+        private bool FishIsHooked()
+        {
+            return CaughtFish.GetComponent<Fish>().IsCaught;
+        }
+
+        private void ResistValueUpdate(float resistAmountToAdd)
+        {
+            CaughtFish.GetComponent<Fish>().CurrentResist += resistAmountToAdd;
+            CaughtFish.GetComponent<Fish>().CurrentResist = Mathf.Clamp(CaughtFish.GetComponent<Fish>().CurrentResist, fishResistSlider.MinVal, fishResistSlider.MaxVal);
+            fishResistSlider.Value = Mathf.FloorToInt(CaughtFish.GetComponent<Fish>().CurrentResist);
+            //FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
         }
 
         //will be called from delegate in PullRodStick
-        private void ResistValueUpdate(int resistAmount)
+        private void ResistValueUpdate()
         {
-            curResist -= resistAmount;
-            fishResistSlider.Value = curResist;
-            //FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
+            ResistValueUpdate(-AmountToScutractFromPulling);
         }
 
     }

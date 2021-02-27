@@ -53,7 +53,7 @@ namespace alexshko.fishingworld.Core
 
         public void HandleFishCaught(Transform fish)
         {
-            CaughtFish = fish;
+            //CaughtFish = fish;
             GetComponent<PullingMechanism>().enabled = true;
         }
 

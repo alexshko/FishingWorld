@@ -1093,6 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pullingSlider: {fileID: 1431746833}
   fishResistSlider: {fileID: 2063532552}
+  AmountToScutractFromPulling: 10
 --- !u!1 &1421514318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1669,11 @@ PrefabInstance:
     - target: {fileID: 6182178546465625632, guid: bfc03edac605ae6498487575b0c18934,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182178546465625633, guid: bfc03edac605ae6498487575b0c18934,
+        type: 3}
+      propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6182178546465625635, guid: bfc03edac605ae6498487575b0c18934,

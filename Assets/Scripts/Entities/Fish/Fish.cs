@@ -25,6 +25,10 @@ namespace alexshko.fishingworld.Enteties.Fishes {
         private float weight;
 
         private bool isCaught;
+        public bool IsCaught { get { return isCaught; } }
+
+        //the current resstance the fish apllies. will be used in the machnism.
+        public float CurrentResist{ get; set; }
 
         private void Awake()
         {
@@ -33,6 +37,7 @@ namespace alexshko.fishingworld.Enteties.Fishes {
             weight = Random.Range(min, max);
 
             isCaught = false;
+            CurrentResist = 0;
         }
 
         private void Update()
