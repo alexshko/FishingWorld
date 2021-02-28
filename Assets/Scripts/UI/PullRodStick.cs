@@ -17,8 +17,6 @@ namespace alexshko.fishingworld.UI
 
         private int PressedFingerId;
         private Image[] ImgsForAnim;
-        //private int diffCount;
-        private int AmountToAddResist = -1;
 
         private void Start()
         {

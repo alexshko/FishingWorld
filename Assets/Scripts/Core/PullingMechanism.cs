@@ -12,13 +12,13 @@ namespace alexshko.fishingworld.Core
     {
         public PullRodStick pullingSlider;
         public FishResistMeter fishResistSlider;
+        public int AmountToScutractFromPulling = 1;
 
 
         private Transform FisherGuy;
-        private Transform CaughtFish;
+        private Transform TookBaitFish;
 
         private Coroutine FishResisting;
-        public int AmountToScutractFromPulling = 1;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace alexshko.fishingworld.Core
 
         private void OnEnable()
         {
-            CaughtFish = GameManagement.Instance.CaughtFish;
+            TookBaitFish = GameManagement.Instance.FishTookBait;
             FisherGuy = GameManagement.Instance.FisherGuy;
 
             if (pullingSlider)
@@ -65,30 +65,43 @@ namespace alexshko.fishingworld.Core
 
         private IEnumerator HandleFishPulling()
         {
+            bool fishCaught = false;
             while (FishIsHooked())
             {
                 MakeFishResist();
+                if (FishGotCaught())
+                {
+                    fishCaught = true;
+                    break;
+                }
                 yield return null;
-
+            }
+            if (fishCaught)
+            {
+                GameManagement.Instance.HandleFishCaught();
             }
         }
 
         private void MakeFishResist()
         {
-            float resistInSecond = CaughtFish.GetComponent<Fish>().FishData.DiffucltyToCatch;
+            float resistInSecond = TookBaitFish.GetComponent<Fish>().FishData.DiffucltyToCatch;
             ResistValueUpdate(resistInSecond * Time.deltaTime);
         }
 
         private bool FishIsHooked()
         {
-            return CaughtFish.GetComponent<Fish>().IsCaught;
+            return ((TookBaitFish.GetComponent<Fish>().TookBait) && !(fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > 2));
+        }
+        private bool FishGotCaught()
+        {
+            return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.green && fishResistSlider.TimeInCurrentColor > 5));
         }
 
         private void ResistValueUpdate(float resistAmountToAdd)
         {
-            CaughtFish.GetComponent<Fish>().CurrentResist += resistAmountToAdd;
-            CaughtFish.GetComponent<Fish>().CurrentResist = Mathf.Clamp(CaughtFish.GetComponent<Fish>().CurrentResist, fishResistSlider.MinVal, fishResistSlider.MaxVal);
-            fishResistSlider.Value = Mathf.FloorToInt(CaughtFish.GetComponent<Fish>().CurrentResist);
+            TookBaitFish.GetComponent<Fish>().CurrentResist += resistAmountToAdd;
+            TookBaitFish.GetComponent<Fish>().CurrentResist = Mathf.Clamp(TookBaitFish.GetComponent<Fish>().CurrentResist, fishResistSlider.MinVal, fishResistSlider.MaxVal);
+            fishResistSlider.Value = Mathf.FloorToInt(TookBaitFish.GetComponent<Fish>().CurrentResist);
             //FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
         }
 

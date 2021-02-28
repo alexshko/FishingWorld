@@ -12,6 +12,8 @@ namespace alexshko.fishingworld.Core
     {
         public static GameManagement Instance;
 
+        public Action<Transform> OnFinishedPullingFish;
+
 
         #region attributes 
 
@@ -27,9 +29,8 @@ namespace alexshko.fishingworld.Core
         private Dictionary<ScriptableObjectFish, float> FishFrequancy;
         #endregion
 
-        public Transform CaughtFish { get; set; }
+        public Transform FishTookBait { get; set; }
 
-        public Action<Transform> OnFinishedPullingFish { get; set; }
 
         private void Awake()
         {
@@ -51,10 +52,15 @@ namespace alexshko.fishingworld.Core
             }
         }
 
-        public void HandleFishCaught(Transform fish)
+        public void HandleFishTookBait(Transform fish)
         {
-            //CaughtFish = fish;
             GetComponent<PullingMechanism>().enabled = true;
+        }
+
+        public void HandleFishCaught()
+        {
+            Debug.Log("Fish was caught");
+            OnFinishedPullingFish(FishTookBait);
         }
 
         //private void PullFishFromWater()
@@ -145,12 +151,12 @@ namespace alexshko.fishingworld.Core
             if (fishObj && fishObj.name != "None")
             {
                 GameObject rndob = Instantiate(fishObj.prefab, FishingSpot.position, Quaternion.identity, FishingSpot);
-                CaughtFish = rndob.GetComponent<Transform>();
+                FishTookBait = rndob.GetComponent<Transform>();
                 //let the player pull the rod
             }
             else
             {
-                CaughtFish = null;
+                FishTookBait = null;
             }
         }
     }

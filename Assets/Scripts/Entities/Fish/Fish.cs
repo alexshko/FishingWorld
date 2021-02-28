@@ -24,8 +24,8 @@ namespace alexshko.fishingworld.Enteties.Fishes {
         [SerializeField]
         private float weight;
 
-        private bool isCaught;
-        public bool IsCaught { get { return isCaught; } }
+        private bool tookBait;
+        public bool TookBait { get { return tookBait; } }
 
         //the current resstance the fish apllies. will be used in the machnism.
         public float CurrentResist{ get; set; }
@@ -36,13 +36,13 @@ namespace alexshko.fishingworld.Enteties.Fishes {
             float min = 0.5f;
             weight = Random.Range(min, max);
 
-            isCaught = false;
+            tookBait = false;
             CurrentResist = 0;
         }
 
         private void Update()
         {
-            if (!isCaught)
+            if (!tookBait)
             {
                 RaycastHit[] hits;
                 hits = Physics.SphereCastAll(transform.parent.position, 0.2f, transform.up, 0.2f);
@@ -54,7 +54,7 @@ namespace alexshko.fishingworld.Enteties.Fishes {
                         if (hit.collider.tag == "LineEnd")
                         {
                             AttachToLineEnd(hit.collider.transform);
-                            GameManagement.Instance.HandleFishCaught(transform);
+                            GameManagement.Instance.HandleFishTookBait(transform);
                         }
                     }
                 }
@@ -65,7 +65,7 @@ namespace alexshko.fishingworld.Enteties.Fishes {
         {
             transform.parent = lineEnd;
             transform.localPosition = Vector3.zero;
-            isCaught = true;
+            tookBait = true;
         }
     }
 }
