@@ -43,6 +43,7 @@ namespace alexshko.fishingworld.UI
             MinVal = int.Parse(GetComponent<Slider>().minValue.ToString());
             MaxVal = int.Parse(GetComponent<Slider>().maxValue.ToString());
 
+            Value = 0;
             TimeInCurrentColor = 0;
         }
 

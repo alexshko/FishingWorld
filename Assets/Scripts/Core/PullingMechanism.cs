@@ -78,6 +78,7 @@ namespace alexshko.fishingworld.Core
             }
             if (fishCaught)
             {
+                FisherGuy.GetComponent<FisherGuyController>().PullRod(TookBaitFish);
                 GameManagement.Instance.HandleFishCaught();
             }
         }

@@ -18,6 +18,11 @@ namespace alexshko.fishingworld.Enteties
         [Tooltip("the top of the fishing rod so it will always update its place there")]
         public Transform FishingRodTop;
 
+        [Tooltip("the speed at wich the rod is casted")]
+        public float CastSpeed = 1;
+        [Tooltip("the speed at wich the rod is pulled")]
+        public float PullSpeed = 5;
+
         private Coroutine MovingAnim;
         private Action OnCoroutineFinished;
 
@@ -64,11 +69,15 @@ namespace alexshko.fishingworld.Enteties
             RodFishingLine.localPosition = new Vector3(RodFishingLine.localPosition.x, dist / 2, RodFishingLine.localPosition.z);
         }
 
-        private IEnumerator MoveLineBottomToPosAnim(Vector3 newPos)
+        private IEnumerator MoveLineBottomToPosAnim(Vector3 newPos, float speed = -1)
         {
+            if (speed == -1)
+            {
+                speed = CastSpeed;
+            }
             while (Vector3.Distance(EndOfLine.position, newPos) > 0.5f)
             {
-                EndOfLine.position = Vector3.Lerp(EndOfLine.position, newPos, Time.deltaTime);
+                EndOfLine.position = Vector3.Lerp(EndOfLine.position, newPos, speed * Time.deltaTime);
                 //PutEndOfLineInNewPosition(EndOfLine.position);
                 yield return null;
             }
@@ -80,19 +89,19 @@ namespace alexshko.fishingworld.Enteties
             }
         }
 
-        public void CastRod(Vector3 newPos)
+        public void CastRod(Vector3 newPos, float speed = -1)
         {
             if (MovingAnim!=null)
             {
                 StopCoroutine(MovingAnim);
             }
-            MovingAnim = StartCoroutine(MoveLineBottomToPosAnim(newPos));
+            MovingAnim = StartCoroutine(MoveLineBottomToPosAnim(newPos, speed));
         }
 
         public void PullRod()
         {
             //isInLooseState = true;
-            CastRod(EndOfLineLooseStancePosition.position);
+            CastRod(EndOfLineLooseStancePosition.position, PullSpeed);
         }
 
         public void AttachFishToEndOfLine(Transform fish)

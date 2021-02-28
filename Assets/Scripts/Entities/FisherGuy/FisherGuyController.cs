@@ -23,7 +23,7 @@ namespace alexshko.fishingworld.Enteties
 
         public void PullRod(Transform FishCaught)
         {
-            FishLineHinge.GetComponent<FishingLineHinge>().AttachFishToEndOfLine(FishCaught);
+            //FishLineHinge.GetComponent<FishingLineHinge>().AttachFishToEndOfLine(FishCaught);
             anim.SetBool("RodCasted", false);
             anim.SetBool("FishCaught", (FishCaught!=null));
             FishLineHinge.GetComponent<FishingLineHinge>().PullRod();
