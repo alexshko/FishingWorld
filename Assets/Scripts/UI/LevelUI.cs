@@ -8,6 +8,7 @@ namespace alexshko.fishingworld.UI
 {
     public class LevelUI : MonoBehaviour
     {
+
         GameObject btn;
         private void Start()
         {
