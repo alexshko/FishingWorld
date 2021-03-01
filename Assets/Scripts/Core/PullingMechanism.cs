@@ -37,6 +37,7 @@ namespace alexshko.fishingworld.Core
             if (fishResistSlider)
             {
                 fishResistSlider.gameObject.SetActive(true);
+                ResistValueUpdate(0);
             }
 
             //start the Coroutine for handling the resistance of the fish.
