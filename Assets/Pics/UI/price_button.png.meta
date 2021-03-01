@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 978b8de07ff6ed9468d3b1e53d13570c
+guid: 89d7d1ac780508441aabc8d47d0d2787
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1145705163582070213
-    second: fishingrod_0
+      213: -5439131956877562696
+    second: price_button_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -128,22 +128,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fishingrod_0
+      name: price_button_0
       rect:
         serializedVersion: 2
-        x: 82
-        y: 28
-        width: 642
-        height: 745
+        x: 204
+        y: 348
+        width: 780
+        height: 375
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 81, y: 0, z: 30, w: 9}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cdd3aca6cc56ef00800000000000000
-      internalID: 1145705163582070213
+      spriteID: 8bc66df8d425484b0800000000000000
+      internalID: -5439131956877562696
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 18d622c1577ac1644b51695cd4624e3c
     internalID: 0
     vertices: []
     indices: 

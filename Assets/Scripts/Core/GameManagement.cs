@@ -60,6 +60,7 @@ namespace alexshko.fishingworld.Core
         public void HandleFishCaught()
         {
             Debug.Log("Fish was caught");
+            GetComponent<PullingMechanism>().enabled = false;
             OnFinishedPullingFish(FishTookBait);
         }
 

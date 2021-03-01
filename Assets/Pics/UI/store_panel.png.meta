@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 978b8de07ff6ed9468d3b1e53d13570c
+guid: ee6bbf0a4ecf6b3459ec0eb8bece5cfa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1145705163582070213
-    second: fishingrod_0
+      213: 5913501281448540929
+    second: store_panel_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,8 +50,8 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteBorder: {x: 146, y: 144, z: 124, w: 115}
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -128,22 +128,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fishingrod_0
+      name: store_panel_0
       rect:
         serializedVersion: 2
-        x: 82
-        y: 28
-        width: 642
-        height: 745
+        x: 146
+        y: 138
+        width: 930
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 81, y: 0, z: 30, w: 9}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cdd3aca6cc56ef00800000000000000
-      internalID: 1145705163582070213
+      spriteID: 10bbe8b951af01250800000000000000
+      internalID: 5913501281448540929
       vertices: []
       indices: 
       edges: []
