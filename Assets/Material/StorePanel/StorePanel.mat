@@ -74,6 +74,7 @@ Material:
     m_Colors:
     - Color_E92E3A7F: {r: 0.8784314, g: 0.3681124, b: 0.039215695, a: 0}
     - Color_EB4BE38C: {r: 1.4588237, g: 0.820691, b: 0.06874034, a: 0}
+    - Color_FBCE32B1: {r: 1, g: 0.4025155, b: 0.4025155, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
