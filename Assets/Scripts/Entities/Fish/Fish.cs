@@ -22,7 +22,7 @@ namespace alexshko.fishingworld.Enteties.Fishes {
         public ScriptableObjectFish FishData;
 
         [SerializeField]
-        private float weight;
+        public float weight;
 
         private bool tookBait;
         public bool TookBait { get { return tookBait; } }

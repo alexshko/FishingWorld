@@ -10,10 +10,6 @@ namespace alexshko.fishingworld.Enteties.Fishes
         public int id;
         [Tooltip("the name of the fish")]
         public string Name;
-        //[Tooltip("the mesh of the fish")]
-        //public Mesh mesh;
-        //[Tooltip("the material of the fish")]
-        //public Material material;
 
         [Tooltip("the prefab that uses this ScritableObject")]
         public GameObject prefab;
@@ -29,5 +25,7 @@ namespace alexshko.fishingworld.Enteties.Fishes
         public int CoinsWorth;
         [Tooltip("how much Royal Starts one can earn from it. Only the first time the fish is caught.")]
         public int RoyalStarsWorth;
+        [Tooltip("how much Emeralds one can earn from it per pound")]
+        public int EmeraldWorth;
     }
 }

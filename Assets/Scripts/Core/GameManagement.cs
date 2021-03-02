@@ -1,5 +1,6 @@
 ﻿using alexshko.fishingworld.Enteties;
 using alexshko.fishingworld.Enteties.Fishes;
+using alexshko.fishingworld.UI.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace alexshko.fishingworld.Core
 {
-
+    [RequireComponent(typeof(UserStats))]
     public class GameManagement : MonoBehaviour
     {
         public static GameManagement Instance;
@@ -61,6 +62,7 @@ namespace alexshko.fishingworld.Core
         {
             Debug.Log("Fish was caught");
             GetComponent<PullingMechanism>().enabled = false;
+            Messages.instance.ShowMessageNewFish(FishTookBait.GetComponent<Fish>());
             OnFinishedPullingFish(FishTookBait);
         }
 
