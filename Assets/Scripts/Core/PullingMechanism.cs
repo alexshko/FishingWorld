@@ -13,6 +13,8 @@ namespace alexshko.fishingworld.Core
         public PullRodStick pullingSlider;
         public FishResistMeter fishResistSlider;
         public int AmountToScutractFromPulling = 1;
+        public float TimeToHoldGreen = 2;
+        public float TimeToHoldRed = 2;
 
 
         private Transform FisherGuy;
@@ -92,11 +94,11 @@ namespace alexshko.fishingworld.Core
 
         private bool FishIsHooked()
         {
-            return ((TookBaitFish.GetComponent<Fish>().TookBait) && !(fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > 2));
+            return ((TookBaitFish.GetComponent<Fish>().TookBait) && !(fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > TimeToHoldRed));
         }
         private bool FishGotCaught()
         {
-            return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.green && fishResistSlider.TimeInCurrentColor > 5));
+            return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.green && fishResistSlider.TimeInCurrentColor > TimeToHoldGreen));
         }
 
         private void ResistValueUpdate(float resistAmountToAdd)

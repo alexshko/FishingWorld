@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using alexshko.fishingworld.Core;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,12 @@ namespace alexshko.fishingworld.UI.Messages
             {
                 UserStats.instance.Emeralds += Amount;
             }
+
+            //hide the message:
+            transform.parent.gameObject.SetActive(false);
+
+            //inform the GameManagement that the fishing cycle is finished:
+            GameManagement.Instance.FinishFishCaughtCycle();
         }
 
 

@@ -2,7 +2,6 @@
 using alexshko.fishingworld.Enteties.Fishes;
 using alexshko.fishingworld.UI.Messages;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,8 @@ namespace alexshko.fishingworld.Core
     {
         public static GameManagement Instance;
 
-        public Action<Transform> OnFinishedPullingFish;
+        //public Action<Transform> OnAfterFinishedPullingFish;
+        public Action OnFinishedPullingFishCycle;
 
 
         #region attributes 
@@ -62,8 +62,25 @@ namespace alexshko.fishingworld.Core
         {
             Debug.Log("Fish was caught");
             GetComponent<PullingMechanism>().enabled = false;
-            Messages.instance.ShowMessageNewFish(FishTookBait.GetComponent<Fish>());
-            OnFinishedPullingFish(FishTookBait);
+
+            //if (OnAfterFinishedPullingFish != null)
+            //{
+            //    OnAfterFinishedPullingFish(FishTookBait);
+            //}
+
+            MessageController.instance.ShowMessageNewFish(FishTookBait.GetComponent<Fish>());
+
+        }
+
+        public void FinishFishCaughtCycle()
+        {
+            if (OnFinishedPullingFishCycle != null)
+            {
+                OnFinishedPullingFishCycle();
+            }
+
+            //destroy the fish:
+            Destroy(FishTookBait.gameObject);
         }
 
         //private void PullFishFromWater()

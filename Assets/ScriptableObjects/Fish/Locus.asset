@@ -19,3 +19,4 @@ MonoBehaviour:
   MaxWeight: 20
   CoinsWorth: 100
   RoyalStarsWorth: 1
+  EmeraldWorth: 1

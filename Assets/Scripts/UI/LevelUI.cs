@@ -12,7 +12,7 @@ namespace alexshko.fishingworld.UI
         GameObject btn;
         private void Start()
         {
-            Core.GameManagement.Instance.OnFinishedPullingFish += ActivateButton;
+            Core.GameManagement.Instance.OnFinishedPullingFishCycle += ActivateButton;
         }
         public void btnLevelStart()
         {
@@ -27,7 +27,7 @@ namespace alexshko.fishingworld.UI
             }
         }
 
-        public void ActivateButton(Transform fish)
+        public void ActivateButton()
         {
             btn.SetActive(true);
         }
