@@ -25,8 +25,9 @@ namespace alexshko.fishingworld.UI.Messages
         {
             if (Currency == Currency.Coins)
             {
-                Vector3 worldResPos = FindPositionOfUIElement(transform.position);
-                Vector3 worldDesPos = FindPositionOfUIElement((UserStats.instance.CoinsRef.position));
+                Vector3 worldResPos = transform.position;
+                Vector3 worldDesPos = (UserStats.instance.CoinsRef.parent.position);
+                worldDesPos.z -= 1;
                 EffectRef.SetVector3("EndPosition", worldDesPos);
                 EffectRef.transform.position = worldResPos;
             }
@@ -42,7 +43,8 @@ namespace alexshko.fishingworld.UI.Messages
         private Vector3 FindPositionOfUIElement(Vector3 pos)
         {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(pos), out hit))
+            Debug.DrawRay(Camera.main.ScreenPointToRay(pos).origin, Camera.main.ScreenPointToRay(pos).direction,Color.blue,5);
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(pos), out hit, 1500f))
             {
                 return hit.point;
             }
