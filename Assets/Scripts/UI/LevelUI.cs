@@ -10,6 +10,15 @@ namespace alexshko.fishingworld.UI
     {
 
         GameObject btn;
+
+        void Awake()
+        {
+            RectTransform rt = GetComponent<RectTransform>();
+            float canvasHeight = rt.rect.height;
+            float desiredCanvasWidth = canvasHeight * Camera.main.aspect;
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, desiredCanvasWidth);
+        }
+
         private void Start()
         {
             Core.GameManagement.Instance.OnFinishedPullingFishCycle += ActivateButton;
