@@ -28,7 +28,8 @@ namespace alexshko.fishingworld.UI
         {
             if (Input.touchCount > 0)
             {
-                float PosDelta = Mathf.Abs(Input.GetTouch(0).position.y - transform.position.y);
+                
+                float PosDelta = Mathf.Abs(Input.GetTouch(0).position.y - Camera.current.WorldToScreenPoint(transform.position).y);
                 Debug.LogFormat("the delta from the bar position: {0}", PosDelta);
                 if ((Input.GetTouch(0).fingerId == PressedFingerId || PressedFingerId == -1) && Input.GetTouch(0).phase == TouchPhase.Moved && (PosDelta < AllowedYDistanceFromBar))
                 {
