@@ -28,20 +28,20 @@ namespace alexshko.fishingworld.UI.Messages
         {
             if (Currency == Currency.Coins)
             {
-                worldResPos = transform.position;
-                Vector3 worldDesPos = (UserStats.instance.CoinsRef.parent.position);
-                worldDesPos.z -= 1;
-                worldResPos.z -= 1;
-                EffectRef.SetVector3("EndPosition", worldDesPos);
-                EffectRef.transform.position = worldResPos;
-                originSphere.transform.position = worldResPos;
+                //worldResPos = transform.position;
+                //Vector3 worldDesPos = (UserStats.instance.CoinsRef.parent.position);
+                //worldDesPos.z -= 1;
+                //worldResPos.z -= 1;
+                //EffectRef.SetVector3("EndPosition", worldDesPos);
+                //EffectRef.transform.position = worldResPos;
+                //originSphere.transform.position = worldResPos;
             }
             else
             {
-                Vector3 worldResPos = FindPositionOfUIElement((transform.position));
-                Vector3 worldDesPos = FindPositionOfUIElement((UserStats.instance.EmeraldsRef.position));
-                EffectRef.SetVector3("EndPosition", worldDesPos);
-                EffectRef.transform.position = worldResPos;
+                //Vector3 worldResPos = FindPositionOfUIElement((transform.position));
+                //Vector3 worldDesPos = FindPositionOfUIElement((UserStats.instance.EmeraldsRef.position));
+                //EffectRef.SetVector3("EndPosition", worldDesPos);
+                //EffectRef.transform.position = worldResPos;
             }
         }
 
@@ -101,7 +101,9 @@ namespace alexshko.fishingworld.UI.Messages
         private void MakeAddCurrencyEffect()
         {
             EffectRef.SendEvent("OnPlay");
-            EffectRef.Reinit();
+            Debug.Log("Playen an effect.");
+            //EffectRef.Reinit();
+            //EffectRef.Play();
         }
     }
 }
