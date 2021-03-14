@@ -7,10 +7,6 @@ using UnityEngine.UI;
 namespace alexshko.fishingworld.UI.Messages {
     public class MessageController : MonoBehaviour
     {
-        public Transform CatchFishMessageRef;
-
-
-
         public static MessageController instance;
 
         private void Awake()
@@ -20,7 +16,9 @@ namespace alexshko.fishingworld.UI.Messages {
 
         public void ShowMessageNewFish(Fish fish)
         {
-            NewFishMessageText msg = Instantiate(CatchFishMessageRef, transform).GetComponent<NewFishMessageText>();
+            NewFishMessageText msg = GetComponentInChildren<NewFishMessageText>(includeInactive: true);
+            if (!msg) return;
+
             msg.FishWeight = fish.weight;
             msg.FishName = fish.FishData.Name;
             msg.FishCoinsWorth = Mathf.CeilToInt(fish.FishData.CoinsWorth * fish.weight);

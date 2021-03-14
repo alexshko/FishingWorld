@@ -15,6 +15,8 @@ namespace alexshko.fishingworld.UI.Messages
         [Tooltip("the reference to the effect for when currency is added")]
         public VisualEffect EffectRef;
 
+        private Coroutine EffectCoroutine;
+
 
         [SerializeField]
         private Currency currency;
@@ -58,22 +60,30 @@ namespace alexshko.fishingworld.UI.Messages
             {
                 UserStats.instance.Emeralds += Amount;
             }
-            MakeAddCurrencyEffect();
+
+            //make the visual effect play for few seconds and then close the message window:
+            if (EffectCoroutine!=null)
+            {
+                StopCoroutine(EffectCoroutine);
+            }
+            EffectCoroutine = StartCoroutine(MakeAddCurrencyEffect());
 
 
-            ////hide the message:
-            //transform.parent.gameObject.SetActive(false);
 
-            ////inform the GameManagement that the fishing cycle is finished:
-            //GameManagement.Instance.FinishFishCaughtCycle();
         }
 
-        private void MakeAddCurrencyEffect()
+        private IEnumerator MakeAddCurrencyEffect()
         {
             EffectRef.SendEvent("OnPlay");
             Debug.Log("Playen an effect.");
-            //EffectRef.Reinit();
-            //EffectRef.Play();
+            yield return new WaitForSeconds(3);
+
+            //hide the message:
+            transform.parent.parent.gameObject.SetActive(false);
+
+            //inform the GameManagement that the fishing cycle is finished:
+            GameManagement.Instance.FinishFishCaughtCycle();
+            yield return null;
         }
     }
 }
