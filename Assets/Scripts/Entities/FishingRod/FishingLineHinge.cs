@@ -58,6 +58,7 @@ namespace alexshko.fishingworld.Enteties
             //    PutEndOfLineInNewPosition(EndOfLine.position);
             //}
             PutEndOfLineInNewPosition(EndOfLine.position);
+            UpdatePointOfContactOnLake();
         }
 
         private void PutEndOfLineInNewPosition(Vector3 newPos)
@@ -67,6 +68,22 @@ namespace alexshko.fishingworld.Enteties
             transform.LookAt(newPos);
             RodFishingLine.localScale = new Vector3(RodFishingLine.localScale.x, dist / 2, RodFishingLine.localScale.z);
             RodFishingLine.localPosition = new Vector3(RodFishingLine.localPosition.x, dist / 2, RodFishingLine.localPosition.z);
+        }
+
+        private void UpdatePointOfContactOnLake()
+        {
+            float dist = Vector3.Distance(transform.position, EndOfLine.position);
+            LayerMask watermask = LayerMask.GetMask("Water");
+            Vector3 direction = (EndOfLine.position - transform.position).normalized;
+            RaycastHit hit;
+            //if found a water, then should make a riplle effect in the contact point
+            if (Physics.Raycast(transform.position, direction, out hit,dist, watermask))
+            {
+                if (hit.collider.GetComponent<Lake>() != null)
+                {
+                    hit.collider.GetComponent<Lake>().PointOFRippleEffect = hit.point;
+                }
+            }
         }
 
         private IEnumerator MoveLineBottomToPosAnim(Vector3 newPos, float speed = -1)
