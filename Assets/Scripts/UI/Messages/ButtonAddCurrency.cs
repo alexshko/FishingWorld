@@ -52,24 +52,13 @@ namespace alexshko.fishingworld.UI.Messages
 
         public void btnAddCurrency()
         {
-            if (Currency == Currency.Coins)
-            {
-                UserStats.instance.Coins += Amount;
-            }
-            else if (Currency == Currency.Emeralds)
-            {
-                UserStats.instance.Emeralds += Amount;
-            }
 
             //make the visual effect play for few seconds and then close the message window:
-            if (EffectCoroutine!=null)
+            if (EffectCoroutine != null)
             {
                 StopCoroutine(EffectCoroutine);
             }
             EffectCoroutine = StartCoroutine(MakeAddCurrencyEffect());
-
-
-
         }
 
         private IEnumerator MakeAddCurrencyEffect()
@@ -78,12 +67,29 @@ namespace alexshko.fishingworld.UI.Messages
             Debug.Log("Playen an effect.");
             yield return new WaitForSeconds(3);
 
+            //Update the currency in the UI. after the effect of adding currency defenatly finished.
+            ChangeCurrencyInUI();
+            yield return null;
+
             //hide the message:
             transform.parent.parent.gameObject.SetActive(false);
 
             //inform the GameManagement that the fishing cycle is finished:
             GameManagement.Instance.FinishFishCaughtCycle();
+
             yield return null;
+        }
+
+        private void ChangeCurrencyInUI()
+        {
+            if (Currency == Currency.Coins)
+            {
+                UserStats.instance.Coins += Amount;
+            }
+            else if (Currency == Currency.Emeralds)
+            {
+                UserStats.instance.Emeralds += Amount;
+            }
         }
     }
 }
