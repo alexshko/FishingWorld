@@ -9,6 +9,8 @@ namespace alexshko.fishingworld.UI
     public class LevelUI : MonoBehaviour
     {
 
+        public Transform StorePanel;
+
         GameObject btn;
 
         void Awake()
@@ -39,6 +41,11 @@ namespace alexshko.fishingworld.UI
         public void ActivateButton()
         {
             btn.SetActive(true);
+        }
+
+        public void OpenStorePanel()
+        {
+            StorePanel.gameObject.SetActive(true);
         }
     }
 }

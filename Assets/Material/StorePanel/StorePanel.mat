@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StorePanel
-  m_Shader: {fileID: -6465566751694194690, guid: 205fd06cb77452749a87f05c4e2dae28,
+  m_Shader: {fileID: -6465566751694194690, guid: c1c20300cc73aab4fb775fafe923b0f0,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -50,6 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_40F4796F: 1
+    - Vector1_59BDA3FB: 0.9
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -72,6 +73,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_36C39C1D: {r: 1.458824, g: 0.3764706, b: 0, a: 0}
     - Color_E92E3A7F: {r: 0.8784314, g: 0.3681124, b: 0.039215695, a: 0}
     - Color_EB4BE38C: {r: 1.4588237, g: 0.820691, b: 0.06874034, a: 0}
     - Color_FBCE32B1: {r: 1, g: 0.4025155, b: 0.4025155, a: 1}
