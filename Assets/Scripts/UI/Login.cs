@@ -10,9 +10,9 @@ namespace alexshko.fishingworld.UI
 {
     public class Login : MonoBehaviour
     {
-        public static string PREFS_ACCESS_TOKEN = "access.token";
-        public static string PREFS_USER = "user";
-        public AccessToken accTo { get; set; }
+        //public static string PREFS_ACCESS_TOKEN = "access.token";
+        public static string PREFS_NAME = "user.name";
+        public static string PREFS_USER = "user.id";
         private void Awake()
         {
             if (!FB.IsInitialized)
@@ -37,14 +37,24 @@ namespace alexshko.fishingworld.UI
         {
             if (FB.IsLoggedIn)
             {
-                accTo = result.AccessToken;
-                PlayerPrefs.SetString(Login.PREFS_ACCESS_TOKEN, accTo.ToJson());
-                PlayerPrefs.SetString(Login.PREFS_USER, accTo.UserId);
+                PlayerPrefs.SetString(Login.PREFS_USER, result.AccessToken.UserId);
+                //get the user's name from Facebook graph and update to the Prefs:
+                FB.API("/me?fields=name", HttpMethod.GET, UpdateFirstNameInPrefs);
+                //Load the Main Scene:
                 StartCoroutine(LoadMainMenu());
             }
             else
             {
                 Debug.LogFormat("Failed to connect with Facebook {0}", result.Error);
+            }
+        }
+
+        private void UpdateFirstNameInPrefs(IGraphResult result)
+        {
+            if (result.Error != null)
+            {
+                Debug.LogError(result.ResultDictionary["name"].ToString());
+                PlayerPrefs.SetString(Login.PREFS_NAME, result.ResultDictionary["name"].ToString());
             }
         }
 
