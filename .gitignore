@@ -27,6 +27,8 @@
 [Aa]ssets/Firebase/*
 [Aa]ssets/Parse/*
 [Aa]ssets/StreamingAssets/*
+#ignore the google services configuration
+[Aa]ssets/google-services.json
 
 # Visual Studio cache directory
 .vs/
