@@ -22,6 +22,11 @@
 [Aa]ssets/[Aa]ssets/*
 [Aa]ssets/LoginAssets/*
 [Aa]ssets/Plugins/*
+[Aa]ssets/Editor Default Resources/*
+[Aa]ssets/ExternalDependencyManager/*
+[Aa]ssets/Firebase/*
+[Aa]ssets/Parse/*
+[Aa]ssets/StreamingAssets/*
 
 # Visual Studio cache directory
 .vs/
