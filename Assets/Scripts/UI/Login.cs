@@ -20,10 +20,10 @@ namespace alexshko.fishingworld.UI
 
         private void Awake()
         {
+            InitializeFirebase();
             InitFacebookLogin();
             //need to check if has the latest google services sdk, if not then update it.
             FireBaseCheckCorrectSDK();
-            InitializeFirebase();
         }
 
         private void InitFacebookLogin()
@@ -46,6 +46,8 @@ namespace alexshko.fishingworld.UI
             if (FB.IsLoggedIn)
             {
                 PlayerPrefs.SetString(Login.PREFS_USER, result.AccessToken.UserId);
+                FireBaseUpdateLogin(result.AccessToken);
+
                 //get the user's name from Facebook graph and update to the Prefs:
                 FB.API("me?fields=name", HttpMethod.GET, UpdatePrefsAndLoadScene);
             }
@@ -54,9 +56,10 @@ namespace alexshko.fishingworld.UI
                 Debug.LogFormat("Failed to connect with Facebook {0}", result.Error);
             }
         }
+
         public void LogInWithFacebook()
         {
-            var perms = new List<string>() {"gaming_profile", "email" };
+            var perms = new List<string>() { "public_profile", "gaming_profile", "email" };
             FB.LogInWithReadPermissions(perms, FacebookLoginAuthCallback);
         }
 
@@ -66,8 +69,8 @@ namespace alexshko.fishingworld.UI
             {
                 Debug.Log(result.ResultDictionary["name"].ToString());
                 PlayerPrefs.SetString(Login.PREFS_NAME, result.ResultDictionary["name"].ToString());
-                //Load the Main Scene:
-                StartCoroutine(LoadMainMenu());
+                ////Load the Main Scene:
+                //StartCoroutine(LoadMainMenu());
             }
         }
 
@@ -135,6 +138,30 @@ namespace alexshko.fishingworld.UI
             auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
             auth.StateChanged += FireBaseAuthStateChanged;
             //FireBaseAuthStateChanged(this, null);
+        }
+
+        private void FireBaseUpdateLogin(AccessToken accessToken)
+        {
+            Debug.Log("expires: " + accessToken.ExpirationTime);
+            auth.SignOut();
+            Firebase.Auth.Credential credential = Firebase.Auth.FacebookAuthProvider.GetCredential(accessToken.TokenString);
+            auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("SignInWithCredentialAsync was canceled.");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
+                    return;
+                }
+
+                Firebase.Auth.FirebaseUser newUser = task.Result;
+                Debug.LogFormat("User signed in successfully: {0} ({1})",
+                    newUser.DisplayName, newUser.UserId);
+            });
         }
 
         void FireBaseAuthStateChanged(object sender, System.EventArgs eventArgs)
