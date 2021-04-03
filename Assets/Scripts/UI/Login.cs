@@ -5,6 +5,7 @@ using UnityEngine;
 using Facebook.Unity;
 using System;
 using UnityEngine.SceneManagement;
+using Firebase.Auth;
 
 namespace alexshko.fishingworld.UI
 {
@@ -13,28 +14,32 @@ namespace alexshko.fishingworld.UI
         //public static string PREFS_ACCESS_TOKEN = "access.token";
         public static string PREFS_NAME = "user.name";
         public static string PREFS_USER = "user.id";
+
+        private FirebaseAuth auth;
+        private FirebaseUser user;
+
         private void Awake()
+        {
+            InitFacebookLogin();
+            //need to check if has the latest google services sdk, if not then update it.
+            FireBaseCheckCorrectSDK();
+            InitializeFirebase();
+        }
+
+        private void InitFacebookLogin()
         {
             if (!FB.IsInitialized)
             {
                 // Initialize the Facebook SDK
-                FB.Init(InitCallback, OnHideUnity);
+                FB.Init(FacebookInitCallback, OnHideUnity);
             }
             else
             {
                 // Already initialized, signal an app activation App Event
                 FB.ActivateApp();
             }
-            //need to check if has the latest google services sdk, if not then update it.
-            CheckCorrectSDK();
         }
 
-        //Start is called before the first frame update
-        public void LogInWithFacebook()
-        {
-            var perms = new List<string>() { "public_profile", "email" };
-            FB.LogInWithReadPermissions(perms, FacebookLoginAuthCallback);
-        }
 
         private void FacebookLoginAuthCallback(ILoginResult result)
         {
@@ -42,22 +47,27 @@ namespace alexshko.fishingworld.UI
             {
                 PlayerPrefs.SetString(Login.PREFS_USER, result.AccessToken.UserId);
                 //get the user's name from Facebook graph and update to the Prefs:
-                FB.API("/me?fields=name", HttpMethod.GET, UpdateFirstNameInPrefs);
-                //Load the Main Scene:
-                StartCoroutine(LoadMainMenu());
+                FB.API("me?fields=name", HttpMethod.GET, UpdatePrefsAndLoadScene);
             }
             else
             {
                 Debug.LogFormat("Failed to connect with Facebook {0}", result.Error);
             }
         }
-
-        private void UpdateFirstNameInPrefs(IGraphResult result)
+        public void LogInWithFacebook()
         {
-            if (result.Error != null)
+            var perms = new List<string>() {"gaming_profile", "email" };
+            FB.LogInWithReadPermissions(perms, FacebookLoginAuthCallback);
+        }
+
+        private void UpdatePrefsAndLoadScene(IGraphResult result)
+        {
+            if (result.Error == null)
             {
-                Debug.LogError(result.ResultDictionary["name"].ToString());
+                Debug.Log(result.ResultDictionary["name"].ToString());
                 PlayerPrefs.SetString(Login.PREFS_NAME, result.ResultDictionary["name"].ToString());
+                //Load the Main Scene:
+                StartCoroutine(LoadMainMenu());
             }
         }
 
@@ -84,7 +94,7 @@ namespace alexshko.fishingworld.UI
             }
         }
 
-        private void InitCallback()
+        private void FacebookInitCallback()
         {
             if (FB.IsInitialized)
             {
@@ -99,7 +109,7 @@ namespace alexshko.fishingworld.UI
             }
         }
 
-        private void CheckCorrectSDK()
+        private void FireBaseCheckCorrectSDK()
         {
             Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
             {
@@ -118,6 +128,31 @@ namespace alexshko.fishingworld.UI
                     // Firebase Unity SDK is not safe to use here.
                 }
             });
+        }
+
+        void InitializeFirebase()
+        {
+            auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+            auth.StateChanged += FireBaseAuthStateChanged;
+            //FireBaseAuthStateChanged(this, null);
+        }
+
+        void FireBaseAuthStateChanged(object sender, System.EventArgs eventArgs)
+        {
+            if (auth.CurrentUser != user)
+            {
+                bool signedIn = (user != auth.CurrentUser) && (auth.CurrentUser != null);
+                if (!signedIn && user != null)
+                {
+                    Debug.Log("Signed out " + user.UserId);
+                }
+                user = auth.CurrentUser;
+                if (signedIn)
+                {
+                    Debug.Log("Firebase Signed in " + user.UserId);
+                    Debug.Log(user.DisplayName ?? "");
+                }
+            }
         }
     }
 }
