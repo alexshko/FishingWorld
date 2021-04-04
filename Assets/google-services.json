@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1070621832331",
-    "project_id": "fishworld-88b52",
-    "storage_bucket": "fishworld-88b52.appspot.com"
+    "project_number": "208239689027",
+    "project_id": "fishingworld-db7c5",
+    "storage_bucket": "fishingworld-db7c5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1070621832331:android:5442486cd6283ede49108e",
+        "mobilesdk_app_id": "1:208239689027:android:1450ca9b48bf64ffda43f6",
         "android_client_info": {
           "package_name": "com.Alexshkorp.FishingWorld"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1070621832331-m5k1g9v3oaejl6j6kc52gaubed1a9q99.apps.googleusercontent.com",
+          "client_id": "208239689027-r9uhojl3ac73nt0hod674pnlmmgqggqs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDUsHqZdfTBlu61SBHapMyJsWs5CK2HHe0"
+          "current_key": "AIzaSyAI6B7TpB-OBYGguQ81xAcGYoNhVVqbwDg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1070621832331-m5k1g9v3oaejl6j6kc52gaubed1a9q99.apps.googleusercontent.com",
+              "client_id": "208239689027-r9uhojl3ac73nt0hod674pnlmmgqggqs.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

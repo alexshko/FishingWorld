@@ -6,6 +6,7 @@ using Facebook.Unity;
 using System;
 using UnityEngine.SceneManagement;
 using Firebase.Auth;
+using Firebase.Extensions;
 
 namespace alexshko.fishingworld.UI
 {
@@ -36,6 +37,7 @@ namespace alexshko.fishingworld.UI
             else
             {
                 // Already initialized, signal an app activation App Event
+                FB.LogOut();
                 FB.ActivateApp();
             }
         }
@@ -45,7 +47,6 @@ namespace alexshko.fishingworld.UI
         {
             if (FB.IsLoggedIn)
             {
-                PlayerPrefs.SetString(Login.PREFS_USER, result.AccessToken.UserId);
                 FireBaseUpdateLogin(result.AccessToken);
 
                 //get the user's name from Facebook graph and update to the Prefs:
@@ -69,8 +70,6 @@ namespace alexshko.fishingworld.UI
             {
                 Debug.Log(result.ResultDictionary["name"].ToString());
                 PlayerPrefs.SetString(Login.PREFS_NAME, result.ResultDictionary["name"].ToString());
-                ////Load the Main Scene:
-                //StartCoroutine(LoadMainMenu());
             }
         }
 
@@ -102,6 +101,7 @@ namespace alexshko.fishingworld.UI
             if (FB.IsInitialized)
             {
                 // Signal an app activation App Event
+                //FB.LogOut();
                 FB.ActivateApp();
                 // Continue with Facebook SDK
                 // ...
@@ -136,16 +136,16 @@ namespace alexshko.fishingworld.UI
         void InitializeFirebase()
         {
             auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+            auth.SignOut();
             auth.StateChanged += FireBaseAuthStateChanged;
             //FireBaseAuthStateChanged(this, null);
         }
 
         private void FireBaseUpdateLogin(AccessToken accessToken)
         {
-            Debug.Log("expires: " + accessToken.ExpirationTime);
-            auth.SignOut();
+            //auth.SignOut();
             Firebase.Auth.Credential credential = Firebase.Auth.FacebookAuthProvider.GetCredential(accessToken.TokenString);
-            auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
+            auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCanceled)
                 {
@@ -173,11 +173,17 @@ namespace alexshko.fishingworld.UI
                 {
                     Debug.Log("Signed out " + user.UserId);
                 }
-                user = auth.CurrentUser;
+                
                 if (signedIn)
                 {
+                    user = auth.CurrentUser;
+                    PlayerPrefs.SetString(Login.PREFS_USER, user.UserId);
+
                     Debug.Log("Firebase Signed in " + user.UserId);
                     Debug.Log(user.DisplayName ?? "");
+
+                    //Load the Main Scene:
+                    StartCoroutine(LoadMainMenu());
                 }
             }
         }
