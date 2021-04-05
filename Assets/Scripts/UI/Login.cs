@@ -29,19 +29,75 @@ namespace alexshko.fishingworld.UI
 
         private void InitFacebookLogin()
         {
-            if (!FB.IsInitialized)
+            try
             {
-                // Initialize the Facebook SDK
-                FB.Init(FacebookInitCallback, OnHideUnity);
-            }
-            else
+                if (!FB.IsInitialized)
+                {
+                    // Initialize the Facebook SDK
+                    FB.Init(FacebookInitCallback, OnHideUnity);
+                }
+                else
+                {
+                    // Already initialized, signal an app activation App Event
+                    FB.LogOut();
+                    FB.ActivateApp();
+                }
+            } catch (Exception e)
             {
-                // Already initialized, signal an app activation App Event
-                FB.LogOut();
-                FB.ActivateApp();
+                Debug.LogError("error: " + e.Message);
             }
         }
 
+        private void FacebookInitCallback()
+        {
+            if (FB.IsInitialized)
+            {
+                // Signal an app activation App Event
+                FB.LogOut();
+                FB.ActivateApp();
+                // Continue with Facebook SDK
+                // ...
+            }
+            else
+            {
+                Debug.Log("Failed to Initialize the Facebook SDK");
+            }
+        }
+        private void OnHideUnity(bool isUnityShown)
+        {
+            if (!isUnityShown)
+            {
+                // Pause the game - we will need to hide
+                Time.timeScale = 0;
+            }
+            else
+            {
+                // Resume the game - we're getting focus again
+                Time.timeScale = 1;
+            }
+        }
+
+        public void LogInWithFacebook()
+        {
+            StartCoroutine(FacebookLoginRoutine());
+        }
+
+        private IEnumerator FacebookLoginRoutine()
+        {
+            while (!FB.IsInitialized)
+            {
+                yield return new WaitForSeconds(2);
+            }
+            try
+            {
+                var perms = new List<string>() { "gaming_profile", "email" };
+                FB.LogInWithReadPermissions(perms, FacebookLoginAuthCallback);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Exception occured during login from facebook: " + e.Message);
+            }
+        }
 
         private void FacebookLoginAuthCallback(ILoginResult result)
         {
@@ -56,12 +112,6 @@ namespace alexshko.fishingworld.UI
             {
                 Debug.LogFormat("Failed to connect with Facebook {0}", result.Error);
             }
-        }
-
-        public void LogInWithFacebook()
-        {
-            var perms = new List<string>() { "public_profile", "gaming_profile", "email" };
-            FB.LogInWithReadPermissions(perms, FacebookLoginAuthCallback);
         }
 
         private void UpdatePrefsAndLoadScene(IGraphResult result)
@@ -82,35 +132,8 @@ namespace alexshko.fishingworld.UI
             }
         }
 
-        private void OnHideUnity(bool isUnityShown)
-        {
-            if (!isUnityShown)
-            {
-                // Pause the game - we will need to hide
-                Time.timeScale = 0;
-            }
-            else
-            {
-                // Resume the game - we're getting focus again
-                Time.timeScale = 1;
-            }
-        }
+        
 
-        private void FacebookInitCallback()
-        {
-            if (FB.IsInitialized)
-            {
-                // Signal an app activation App Event
-                //FB.LogOut();
-                FB.ActivateApp();
-                // Continue with Facebook SDK
-                // ...
-            }
-            else
-            {
-                Debug.Log("Failed to Initialize the Facebook SDK");
-            }
-        }
 
         private void FireBaseCheckCorrectSDK()
         {
