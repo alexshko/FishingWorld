@@ -26,7 +26,6 @@ namespace alexshko.fishingworld.UI
             //need to check if has the latest google services sdk, if not then update it.
             FireBaseCheckCorrectSDK();
         }
-
         private void InitFacebookLogin()
         {
             try
@@ -42,7 +41,8 @@ namespace alexshko.fishingworld.UI
                     FB.LogOut();
                     FB.ActivateApp();
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Debug.LogError("error: " + e.Message);
             }
@@ -52,8 +52,9 @@ namespace alexshko.fishingworld.UI
         {
             if (FB.IsInitialized)
             {
-                // Signal an app activation App Event
+                //incase the user didn't logout correctly last time:
                 FB.LogOut();
+                // Signal an app activation App Event
                 FB.ActivateApp();
                 // Continue with Facebook SDK
                 // ...
@@ -77,6 +78,7 @@ namespace alexshko.fishingworld.UI
             }
         }
 
+        //called from Button in the game:
         public void LogInWithFacebook()
         {
             StartCoroutine(FacebookLoginRoutine());
@@ -99,14 +101,15 @@ namespace alexshko.fishingworld.UI
             }
         }
 
+        //called from function FacebookLoginRoutine after tried to log into facebook account:
         private void FacebookLoginAuthCallback(ILoginResult result)
         {
             if (FB.IsLoggedIn)
             {
-                FireBaseUpdateLogin(result.AccessToken);
+                FireBaseLoginOfFacebook(result.AccessToken);
 
                 //get the user's name from Facebook graph and update to the Prefs:
-                FB.API("me?fields=name", HttpMethod.GET, UpdatePrefsAndLoadScene);
+                FB.API("me?fields=name", HttpMethod.GET, UpdatePrefsName);
             }
             else
             {
@@ -114,7 +117,8 @@ namespace alexshko.fishingworld.UI
             }
         }
 
-        private void UpdatePrefsAndLoadScene(IGraphResult result)
+        //called from FacebookLoginAuthCallback once it loggen to facebook successfuly:
+        private void UpdatePrefsName(IGraphResult result)
         {
             if (result.Error == null)
             {
@@ -122,18 +126,6 @@ namespace alexshko.fishingworld.UI
                 PlayerPrefs.SetString(Login.PREFS_NAME, result.ResultDictionary["name"].ToString());
             }
         }
-
-        private IEnumerator LoadMainMenu()
-        {
-            AsyncOperation ao = SceneManager.LoadSceneAsync(1);
-            while (!ao.isDone)
-            {
-                yield return null;
-            }
-        }
-
-        
-
 
         private void FireBaseCheckCorrectSDK()
         {
@@ -164,7 +156,7 @@ namespace alexshko.fishingworld.UI
             //FireBaseAuthStateChanged(this, null);
         }
 
-        private void FireBaseUpdateLogin(AccessToken accessToken)
+        private void FireBaseLoginOfFacebook(AccessToken accessToken)
         {
             //auth.SignOut();
             Firebase.Auth.Credential credential = Firebase.Auth.FacebookAuthProvider.GetCredential(accessToken.TokenString);
@@ -201,6 +193,8 @@ namespace alexshko.fishingworld.UI
                 {
                     user = auth.CurrentUser;
                     PlayerPrefs.SetString(Login.PREFS_USER, user.UserId);
+                    PlayerPrefs.SetString(Login.PREFS_NAME, user.DisplayName);
+                    
 
                     Debug.Log("Firebase Signed in " + user.UserId);
                     Debug.Log(user.DisplayName ?? "");
@@ -208,6 +202,14 @@ namespace alexshko.fishingworld.UI
                     //Load the Main Scene:
                     StartCoroutine(LoadMainMenu());
                 }
+            }
+        }
+        private IEnumerator LoadMainMenu()
+        {
+            AsyncOperation ao = SceneManager.LoadSceneAsync(1);
+            while (!ao.isDone)
+            {
+                yield return null;
             }
         }
     }
