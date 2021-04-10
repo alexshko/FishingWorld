@@ -7,8 +7,6 @@ using UnityEngine.VFX;
 
 namespace alexshko.fishingworld.UI.Messages
 {
-    public enum Currency { Coins, Emeralds };
-
 
     public class ButtonAddCurrency : MonoBehaviour
     {

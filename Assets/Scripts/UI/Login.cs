@@ -7,6 +7,7 @@ using System;
 using UnityEngine.SceneManagement;
 using Firebase.Auth;
 using Firebase.Extensions;
+using alexshko.fishingworld.Core.DB;
 
 namespace alexshko.fishingworld.UI
 {
@@ -198,6 +199,9 @@ namespace alexshko.fishingworld.UI
 
                     Debug.Log("Firebase Signed in " + user.UserId);
                     Debug.Log(user.DisplayName ?? "");
+
+                    await UserFirebaseDataBase.instance.ReadUserCreateEmptyIfNotExistInDB();
+                    UserFirebaseDataBase.instance.ReadUserData(UpdateUser);
 
                     //Load the Main Scene:
                     StartCoroutine(LoadMainMenu());
