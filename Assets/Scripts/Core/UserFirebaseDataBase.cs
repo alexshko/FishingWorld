@@ -23,19 +23,22 @@ namespace alexshko.fishingworld.Core.DB
             dbRef = FirebaseDatabase.DefaultInstance.RootReference;
         }
 
-        public async Task ReadUserData(Action<User> actionAfterRead)
+        public async Task<User> ReadUserData()
         {
+            User u = null;
             await dbRef.Child(user.UserId).GetValueAsync().ContinueWith(task => {
                 if (task.IsFaulted || task.IsCanceled)
                 {
                     Debug.Log("coudlnt read user info");
+                    throw new Exception("coudlnt read user info");
                 }
                 if (task.IsCompleted)
                 {
                     DataSnapshot data = task.Result;
-                    actionAfterRead((User)(data.Value));
+                    u = ((User)(data.Value));
                 }
             });
+            return u;
         }
 
         public void UserUpdateCurrency(Currency currency, int newVal)
@@ -44,17 +47,20 @@ namespace alexshko.fishingworld.Core.DB
             dbRef.Child("users/" + user.UserId).Child(currStr).SetValueAsync(newVal);
         }
 
-        public void ReadUserCreateEmptyIfNotExistInDB()
+        public async Task ReadUserCreateEmptyIfNotExistInDB()
         {
-            createNewUserInDB();
-
+            User readUser = await ReadUserData();
+            if (readUser == null)
+            {
+                await createNewUserInDB();
+            }
         }
 
-        private void createNewUserInDB()
+        private async Task createNewUserInDB()
         {
             User newUser = new User();
             string dataForJson = JsonUtility.ToJson(newUser);
-            dbRef.Child(user.UserId).SetRawJsonValueAsync(dataForJson);
+            await dbRef.Child(user.UserId).SetRawJsonValueAsync(dataForJson);
         }
     }
 }

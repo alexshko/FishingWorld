@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using Firebase.Auth;
 using Firebase.Extensions;
 using alexshko.fishingworld.Core.DB;
+using System.Threading.Tasks;
 
 namespace alexshko.fishingworld.UI
 {
@@ -200,13 +201,18 @@ namespace alexshko.fishingworld.UI
                     Debug.Log("Firebase Signed in " + user.UserId);
                     Debug.Log(user.DisplayName ?? "");
 
-                    await UserFirebaseDataBase.instance.ReadUserCreateEmptyIfNotExistInDB();
-                    UserFirebaseDataBase.instance.ReadUserData(UpdateUser);
+                    //wait untill finished loading data and loading level;
+                    InitUserDataAndStartLevel().Wait();
 
-                    //Load the Main Scene:
-                    StartCoroutine(LoadMainMenu());
                 }
             }
+        }
+
+        private async Task InitUserDataAndStartLevel()
+        {
+            await UserFirebaseDataBase.instance.ReadUserCreateEmptyIfNotExistInDB();
+            //Load the Main Scene:
+            StartCoroutine(LoadMainMenu());
         }
         private IEnumerator LoadMainMenu()
         {

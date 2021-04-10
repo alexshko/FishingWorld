@@ -5,8 +5,8 @@ namespace alexshko.fishingworld.Core.DB
 {
     public interface UserDataBase
     {
-        async Task ReadUserData(Action<User> actionAfterRead);
-        void ReadUserCreateEmptyIfNotExistInDB();
+        Task<User> ReadUserData();
+        Task ReadUserCreateEmptyIfNotExistInDB();
         void UserUpdateCurrency(Currency currency, int newVal);
     }
 }

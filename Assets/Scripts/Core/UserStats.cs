@@ -2,6 +2,7 @@
 using TMPro;
 using alexshko.fishingworld.UI;
 using alexshko.fishingworld.Core.DB;
+using System.Threading.Tasks;
 
 namespace alexshko.fishingworld.Core
 {
@@ -60,12 +61,12 @@ namespace alexshko.fishingworld.Core
         {
             instance = this;
             //userID = PlayerPrefs.GetString(Login.PREFS_NAME);
+            ReadUserDataAndUpdateUI().Start();
         }
 
-        //should be called in the begining of the game:
-        public void UpdateUser(User u)
+        private async Task ReadUserDataAndUpdateUI()
         {
-            user = u;
+            user = await UserFirebaseDataBase.instance.ReadUserData();
             UpdateCurrencyValue(Currency.Coins, user.Coins);
             UpdateCurrencyValue(Currency.Emeralds, user.Emeralds);
         }
