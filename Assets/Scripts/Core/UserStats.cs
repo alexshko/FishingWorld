@@ -31,7 +31,7 @@ namespace alexshko.fishingworld.Core
             set
             {
                 user.Coins = value;
-                UserFirebaseDataBase.instance.UserUpdateCurrency(Currency.Coins, user.Coins);
+                UserFirebaseDataBase.Instance.UserUpdateCurrency(Currency.Coins, user.Coins);
                 UpdateCurrencyValue(Currency.Coins, user.Coins);
             }
         }
@@ -45,7 +45,7 @@ namespace alexshko.fishingworld.Core
             set
             {
                 user.Emeralds = value;
-                UserFirebaseDataBase.instance.UserUpdateCurrency(Currency.Emeralds, user.Emeralds);
+                UserFirebaseDataBase.Instance.UserUpdateCurrency(Currency.Emeralds, user.Emeralds);
                 UpdateCurrencyValue(Currency.Emeralds, user.Emeralds);
             }
         }
@@ -66,7 +66,7 @@ namespace alexshko.fishingworld.Core
 
         private async Task ReadUserDataAndUpdateUI()
         {
-            user = await UserFirebaseDataBase.instance.ReadUserData();
+            user = await UserFirebaseDataBase.Instance.ReadUserData(UserFirebaseDataBase.TimeoutMillis);
             UpdateCurrencyValue(Currency.Coins, user.Coins);
             UpdateCurrencyValue(Currency.Emeralds, user.Emeralds);
         }

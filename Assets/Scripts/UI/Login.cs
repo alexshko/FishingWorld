@@ -12,8 +12,10 @@ using System.Threading.Tasks;
 
 namespace alexshko.fishingworld.UI
 {
+    
     public class Login : MonoBehaviour
     {
+        
         //public static string PREFS_ACCESS_TOKEN = "access.token";
         public static string PREFS_NAME = "user.name";
         public static string PREFS_USER = "user.id";
@@ -202,7 +204,7 @@ namespace alexshko.fishingworld.UI
                     Debug.Log(user.DisplayName ?? "");
 
                     //wait untill finished loading data and loading level;
-                    InitUserDataAndStartLevel().Wait();
+                    InitUserDataAndStartLevel().ConfigureAwait(false);
 
                 }
             }
@@ -210,7 +212,9 @@ namespace alexshko.fishingworld.UI
 
         private async Task InitUserDataAndStartLevel()
         {
-            await UserFirebaseDataBase.instance.ReadUserCreateEmptyIfNotExistInDB();
+            await UserFirebaseDataBase.Instance.ReadUserCreateEmptyIfNotExistInDB();
+            //await Task.Delay(UserFirebaseDataBase.TimeoutMillis);
+            Debug.Log("created empty user");
             //Load the Main Scene:
             StartCoroutine(LoadMainMenu());
         }
