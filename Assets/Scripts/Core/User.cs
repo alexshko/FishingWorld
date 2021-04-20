@@ -19,7 +19,8 @@ namespace alexshko.fishingworld.Core
 
         public User()
         {
-            Coins = Emeralds = CurrentLevel = 0;
+            Coins = Emeralds  = 0;
+            CurrentLevel = 1;
             Fishes = new Dictionary<string, int>();
             Fishes["Carppie"] = 2;
             Fishes["Locus"] = 3;
@@ -38,6 +39,11 @@ namespace alexshko.fishingworld.Core
             string dataForJson = JsonUtility.ToJson(this);
             dataForJson = dataForJson.Substring(0, dataForJson.Length - 1) + fishesString + "}";
             return dataForJson;
+        }
+
+        public static User FromJson(string jsonString)
+        {
+            return (JsonUtility.FromJson<User>(jsonString));
         }
     }
 }

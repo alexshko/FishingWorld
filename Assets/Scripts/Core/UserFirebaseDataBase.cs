@@ -82,30 +82,46 @@ namespace alexshko.fishingworld.Core.DB
             return u;
         }
 
-        public void UserUpdateCurrency(Currency currency, int newVal)
-        {
-            string currStr = (currency == Currency.Coins) ? "Coins" : "Emeralds";
-            dbRef.Child("users/" + user.UserId).Child(currStr).SetValueAsync(newVal);
-        }
+        //public async Task UserUpdateCurrency(Currency currency, int newVal)
+        //{
+        //    string currStr = (currency == Currency.Coins) ? "Coins" : "Emeralds";
+        //    await dbRef.Child("users/" + user.UserId).Child(currStr).SetValueAsync(newVal);
+        //}
 
-        public async Task ReadUserCreateEmptyIfNotExistInDB()
+        public async Task<User> ReadUserCreateEmptyIfNotExistInDB()
         {
+            User readUser = null;
+
             try { 
-                User readUser = await ReadUserData(TimeoutMillis);
+                //try to fetch it.
+                readUser = await ReadUserData(TimeoutMillis);
+                //if didn't fetch then consider him a new user and put a new record for him in hte DB/
                 if (readUser == null)
                 {
+                    readUser = (new User());
                     await createNewUserInDB();
                 }
+                return readUser;
             } catch (Exception e)
             {
+                //error. show a message and consider him as a new User:
                 Debug.LogError("there was an error creating the user");
+                return (new User());
             }
         }
 
-        private async Task createNewUserInDB()
+        private async Task<User> createNewUserInDB()
         {
             User newUser = new User();
-            string dataForJson = newUser.ToJson();
+            //string dataForJson = newUser.ToJson();
+            //await dbRef.Child(user.UserId).SetRawJsonValueAsync(dataForJson);
+            await SaveUserData(newUser);
+            return newUser;
+        }
+
+        public async Task SaveUserData(User u)
+        {
+            string dataForJson = u.ToJson();
             await dbRef.Child(user.UserId).SetRawJsonValueAsync(dataForJson);
         }
     }

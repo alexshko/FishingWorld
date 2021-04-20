@@ -9,6 +9,7 @@ using Firebase.Auth;
 using Firebase.Extensions;
 using alexshko.fishingworld.Core.DB;
 using System.Threading.Tasks;
+using alexshko.fishingworld.Core;
 
 namespace alexshko.fishingworld.UI
 {
@@ -18,7 +19,9 @@ namespace alexshko.fishingworld.UI
         
         //public static string PREFS_ACCESS_TOKEN = "access.token";
         public static string PREFS_NAME = "user.name";
-        public static string PREFS_USER = "user.id";
+        public static string PREFS_USER_ID = "user.id";
+        public static string PREFS_USER_STATS = "user.stats";
+
 
         private FirebaseAuth auth;
         private FirebaseUser user;
@@ -196,7 +199,7 @@ namespace alexshko.fishingworld.UI
                 if (signedIn)
                 {
                     user = auth.CurrentUser;
-                    PlayerPrefs.SetString(Login.PREFS_USER, user.UserId);
+                    PlayerPrefs.SetString(Login.PREFS_USER_ID, user.UserId);
                     PlayerPrefs.SetString(Login.PREFS_NAME, user.DisplayName);
                     
 
@@ -212,13 +215,13 @@ namespace alexshko.fishingworld.UI
 
         private async Task InitUserDataAndStartLevel()
         {
-            await UserFirebaseDataBase.Instance.ReadUserCreateEmptyIfNotExistInDB();
-            //await Task.Delay(UserFirebaseDataBase.TimeoutMillis);
+            User userdata = await UserFirebaseDataBase.Instance.ReadUserCreateEmptyIfNotExistInDB();
+            PlayerPrefs.SetString(PREFS_USER_STATS, userdata.ToJson());
             Debug.Log("created empty user");
             //Load the Main Scene:
             StartCoroutine(LoadMainMenu());
         }
-        private IEnumerator LoadMainMenu()
+        private IEnumerator LoadMainMenu(int LevelToLoad = 1)
         {
             AsyncOperation ao = SceneManager.LoadSceneAsync(1);
             while (!ao.isDone)

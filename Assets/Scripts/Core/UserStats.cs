@@ -15,7 +15,7 @@ namespace alexshko.fishingworld.Core
 
         private User user;
 
-        private void UpdateCurrencyValue(Currency cur, int val)
+        private void UpdateCurrencyValueUI(Currency cur, int val)
         {
             Transform CurRef = (cur == Currency.Coins ? CoinsRef : EmeraldsRef);
             CurRef.GetComponent<TMP_Text>().text = val.ToString("F0");
@@ -31,8 +31,9 @@ namespace alexshko.fishingworld.Core
             set
             {
                 user.Coins = value;
-                UserFirebaseDataBase.Instance.UserUpdateCurrency(Currency.Coins, user.Coins);
-                UpdateCurrencyValue(Currency.Coins, user.Coins);
+                //UserFirebaseDataBase.Instance.UserUpdateCurrency(Currency.Coins, user.Coins);
+                UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
+                UpdateCurrencyValueUI(Currency.Coins, user.Coins);
             }
         }
         //private int emeralds;
@@ -45,8 +46,9 @@ namespace alexshko.fishingworld.Core
             set
             {
                 user.Emeralds = value;
-                UserFirebaseDataBase.Instance.UserUpdateCurrency(Currency.Emeralds, user.Emeralds);
-                UpdateCurrencyValue(Currency.Emeralds, user.Emeralds);
+                //UserFirebaseDataBase.Instance.UserUpdateCurrency(Currency.Emeralds, user.Emeralds);
+                UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
+                UpdateCurrencyValueUI(Currency.Emeralds, user.Emeralds);
             }
         }
         //public int RoyalStarts { get; set; }
@@ -61,14 +63,16 @@ namespace alexshko.fishingworld.Core
         {
             instance = this;
             //userID = PlayerPrefs.GetString(Login.PREFS_NAME);
-            ReadUserDataAndUpdateUI().Start();
+            ReadUserDataAndUpdateUI();
         }
 
-        private async Task ReadUserDataAndUpdateUI()
+        private void ReadUserDataAndUpdateUI()
         {
-            user = await UserFirebaseDataBase.Instance.ReadUserData(UserFirebaseDataBase.TimeoutMillis);
-            UpdateCurrencyValue(Currency.Coins, user.Coins);
-            UpdateCurrencyValue(Currency.Emeralds, user.Emeralds);
+            //user = await UserFirebaseDataBase.Instance.ReadUserData(UserFirebaseDataBase.TimeoutMillis);
+            user = User.FromJson(PlayerPrefs.GetString(Login.PREFS_USER_STATS));
+            UpdateCurrencyValueUI(Currency.Coins, user.Coins);
+            UpdateCurrencyValueUI(Currency.Emeralds, user.Emeralds);
+            //add here init for list of caught fishes.
         }
 
     }
