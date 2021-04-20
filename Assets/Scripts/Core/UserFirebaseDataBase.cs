@@ -78,8 +78,8 @@ namespace alexshko.fishingworld.Core.DB
                 {
                     throw new TimeoutException("The operation has timed out.");
                 }
+                return u;
             }
-            return u;
         }
 
         //public async Task UserUpdateCurrency(Currency currency, int newVal)
