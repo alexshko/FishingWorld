@@ -82,12 +82,6 @@ namespace alexshko.fishingworld.Core.DB
             }
         }
 
-        //public async Task UserUpdateCurrency(Currency currency, int newVal)
-        //{
-        //    string currStr = (currency == Currency.Coins) ? "Coins" : "Emeralds";
-        //    await dbRef.Child("users/" + user.UserId).Child(currStr).SetValueAsync(newVal);
-        //}
-
         public async Task<User> ReadUserCreateEmptyIfNotExistInDB()
         {
             User readUser = null;
