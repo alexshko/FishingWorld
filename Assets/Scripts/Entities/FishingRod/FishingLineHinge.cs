@@ -2,6 +2,7 @@
 using UnityEngine;
 using alexshko.fishingworld.Enteties;
 using System;
+using alexshko.fishingworld.Core;
 
 namespace alexshko.fishingworld.Enteties
 {
@@ -83,6 +84,10 @@ namespace alexshko.fishingworld.Enteties
                 {
                     hit.collider.GetComponent<Lake>().PointOFRippleEffect = hit.point;
                 }
+            }
+            else
+            {
+                GameManagement.Instance.LevelLake.PointOFRippleEffect = Vector3.zero;
             }
         }
 

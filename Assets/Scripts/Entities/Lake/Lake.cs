@@ -15,9 +15,15 @@ namespace alexshko.fishingworld.Enteties
         public Vector3 PointOFRippleEffect { 
             get { return pointOfRippleEffect; } 
             set {
-                //only if the position of the effect moves by 0.1f then we should reposition the effect:
-                if (Vector3.Distance(pointOfRippleEffect, value) > 0.1f)
+                if (Vector3.Distance(value,Vector3.zero) < 0.1f)
                 {
+                    RippleEffectRef.enabled = false;
+                }
+                //only if the position of the effect moves by 0.1f then we should reposition the effect:
+                else if (Vector3.Distance(pointOfRippleEffect, value) > 0.1f)
+                {
+                    RippleEffectRef.enabled = true;
+
                     pointOfRippleEffect = value;
                     RippleEffectRef.transform.position = value + new Vector3(0,.02f,0);
                     RippleEffectRef.Reinit();
