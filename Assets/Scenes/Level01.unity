@@ -1570,8 +1570,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.00089785794, y: -0.9978717, z: -0.014062895, w: -0.06366695}
-  m_LocalPosition: {x: 0.46092105, y: 10.741312, z: 25.134314}
+  m_LocalRotation: {x: 0.0018034354, y: -0.9979062, z: -0.03203578, w: -0.05615781}
+  m_LocalPosition: {x: -0.09248829, y: 10.961236, z: 24.972008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1985,11 +1985,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FishPopularity:
   - fish: {fileID: 11400000, guid: 35cdea296345bfb418f6cbd82f12def4, type: 2}
-    popularity: 90
+    popularity: 1
   - fish: {fileID: 11400000, guid: 80d41cf9ae2319a46b1a161355b3fd6f, type: 2}
-    popularity: 10
+    popularity: 1
   - fish: {fileID: 11400000, guid: 9e7c2adb636272542bbd16d150a52ea7, type: 2}
     popularity: 0
+  - fish: {fileID: 11400000, guid: 46c6720e8bb013d479e0393c54536c34, type: 2}
+    popularity: 98
   RippleEffectRef: {fileID: 860214284}
 --- !u!1001 &1196408256
 PrefabInstance:

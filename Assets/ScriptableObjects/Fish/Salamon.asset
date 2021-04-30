@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d511e2232e361e40974305c08e64d85, type: 3}
-  m_Name: Locus
+  m_Name: Salamon
   m_EditorClassIdentifier: 
-  id: 100
-  Name: Locus
-  prefab: {fileID: 1942639122117973440, guid: 971dd00bc66219540bbee4f8ee179ea8, type: 3}
-  DiffucltyToCatch: 5
+  id: 150
+  Name: Salamon
+  prefab: {fileID: 4970660215292234109, guid: c83ec1c8b72fe51429873b98cc23dabc, type: 3}
+  DiffucltyToCatch: 6
   MaxWeight: 20
-  CoinsWorth: 10
-  RoyalStarsWorth: 1
+  CoinsWorth: 15
+  RoyalStarsWorth: 0
   EmeraldWorth: 1
