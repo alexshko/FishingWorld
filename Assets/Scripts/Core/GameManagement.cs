@@ -3,6 +3,7 @@ using alexshko.fishingworld.Enteties.Fishes;
 using alexshko.fishingworld.UI.Messages;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace alexshko.fishingworld.Core
@@ -62,18 +63,33 @@ namespace alexshko.fishingworld.Core
         {
             Debug.Log("Fish was caught");
             GetComponent<PullingMechanism>().enabled = false;
+            ShowNewFishMessage().ConfigureAwait(false);
+        }
 
-            //if (OnAfterFinishedPullingFish != null)
-            //{
-            //    OnAfterFinishedPullingFish(FishTookBait);
-            //}
+        private async Task ShowNewFishMessage()
+        {
+            //set the cam to focus on the caught fish:
+            await CameraController.Instance.SetFocusOnFishingSpot();
 
+            //show new fish message:
             MessageController.instance.ShowMessageNewFish(FishTookBait.GetComponent<Fish>());
-
         }
 
         public void FinishFishCaughtCycle()
         {
+            HandleEndOfFishCaughtCycle().ConfigureAwait(false);
+        }
+
+        private async Task HandleEndOfFishCaughtCycle()
+        {
+            //set the cam to the person and wait for it to finish:
+            await CameraController.Instance.SetFocusOnMainCam();
+
+            //if there is a message of new fish, close it.
+            MessageController.instance.HideMessageNewFish();
+
+            //Delegeate:
+            //curently show the button START
             if (OnFinishedPullingFishCycle != null)
             {
                 OnFinishedPullingFishCycle();
@@ -88,7 +104,7 @@ namespace alexshko.fishingworld.Core
         //    StartCoroutine(GetFishOutOfWater());
         //}
 
-        
+
 
         //private IEnumerator GetFishOutOfWater()
         //{

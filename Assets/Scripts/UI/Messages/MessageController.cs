@@ -38,5 +38,12 @@ namespace alexshko.fishingworld.UI.Messages {
 
             msg.gameObject.SetActive(true);
         }
+
+        public void HideMessageNewFish()
+        {
+            NewFishMessageText msg = GetComponentInChildren<NewFishMessageText>(includeInactive: true);
+            if (!msg) return;
+            msg.gameObject.SetActive(false);
+        }
     }
 }
