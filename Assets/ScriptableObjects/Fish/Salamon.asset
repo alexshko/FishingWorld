@@ -17,6 +17,7 @@ MonoBehaviour:
   prefab: {fileID: 4970660215292234109, guid: c83ec1c8b72fe51429873b98cc23dabc, type: 3}
   DiffucltyToCatch: 6
   MaxWeight: 20
-  CoinsWorth: 15
+  MeanWeight: 2
+  CoinsWorth: 5
   RoyalStarsWorth: 0
   EmeraldWorth: 1

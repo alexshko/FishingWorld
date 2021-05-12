@@ -21,6 +21,8 @@ namespace alexshko.fishingworld.Enteties.Fishes
         //public float popularity;
         [Tooltip("the max weight possible of the fish")]
         public float MaxWeight;
+        [Tooltip("the median weight of the fish")]
+        public float MeanWeight;
         [Tooltip("how much Coins one can earn from it per pound")]
         public int CoinsWorth;
         [Tooltip("how much Royal Starts one can earn from it. Only the first time the fish is caught.")]

@@ -32,9 +32,13 @@ namespace alexshko.fishingworld.Enteties.Fishes {
 
         private void Awake()
         {
-            float max = FishData.MaxWeight;
-            float min = 0.5f;
-            weight = Random.Range(min, max);
+            float maxWeight = FishData.MaxWeight;
+            float meanWeight = FishData.MeanWeight;
+            float minWeight = 0.5f;
+            //weight = Random.Range(min, max);
+
+            //randomize with normal distribution of (meanWeight, 10f) and make sure its not more than maxWeight and not less than 0.5 kilos.
+            weight = Mathf.Clamp((float)RandomizeWeight(meanWeight, 10f),0.5f,maxWeight);
 
             tookBait = false;
             CurrentResist = 0;
@@ -66,6 +70,18 @@ namespace alexshko.fishingworld.Enteties.Fishes {
             transform.parent = lineEnd;
             transform.localPosition = Vector3.zero;
             tookBait = true;
+        }
+
+        private double RandomizeWeight(float mean=10, float stdDev=10)
+        {
+            System.Random rand = new System.Random(); //reuse this if you are generating many
+            float u1 = 1.0f - (float)(rand.NextDouble()); //uniform(0,1] random doubles
+            float u2 = 1.0f - (float)(rand.NextDouble()); //uniform(0,1] random doubles
+            double randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) *
+                         Mathf.Sin(2.0f * Mathf.PI * u2); //random normal(0,1)
+            double randNormal =
+                         mean + stdDev * randStdNormal; //random normal(mean,stdDev^2)
+            return randNormal;
         }
     }
 }

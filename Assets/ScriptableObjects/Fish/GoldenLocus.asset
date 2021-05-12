@@ -16,7 +16,8 @@ MonoBehaviour:
   Name: GoldenLocus
   prefab: {fileID: 1455941771276753047, guid: cff0cc74152f3db4c9bd30a689c31650, type: 3}
   DiffucltyToCatch: 8
-  MaxWeight: 10
-  CoinsWorth: 1500
+  MaxWeight: 8
+  MeanWeight: 0.75
+  CoinsWorth: 100
   RoyalStarsWorth: 2
-  EmeraldWorth: 2
+  EmeraldWorth: 10
