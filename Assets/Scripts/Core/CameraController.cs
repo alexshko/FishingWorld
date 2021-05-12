@@ -9,6 +9,7 @@ namespace alexshko.fishingworld.Core {
     {
         public CinemachineVirtualCamera mainVcam;
         public CinemachineVirtualCamera fishVCam;
+        public int WaitTimeInSeconds;
 
         //the instance for the Singelton:
         public static CameraController Instance;
@@ -24,25 +25,25 @@ namespace alexshko.fishingworld.Core {
             currentActive = mainVcam;
         }
 
-        private async Task ResetPriorityOfCurrentCam()
+        private void ResetPriorityOfCurrentCam()
         {
             if (currentActive != mainVcam)
             {
                 currentActive.Priority = LastPriority;
                 currentActive = mainVcam;
                 LastPriority = 0;
-                await Task.Delay(1000);
             }
         }
 
-        private async Task SetCurrentCam(CinemachineVirtualCamera CamToRegister)
+        private void SetCurrentCam(CinemachineVirtualCamera CamToRegister)
         {
             if (currentActive != CamToRegister)
             {
+                ResetPriorityOfCurrentCam();
+
                 LastPriority = CamToRegister.Priority;
-                CamToRegister.Priority = mainVcam.Priority + 10;
                 currentActive = CamToRegister;
-                await Task.Delay(1000);
+                currentActive.Priority = Mathf.Max(mainVcam.Priority, fishVCam.Priority) + 10;
             }
         }
 
@@ -50,14 +51,16 @@ namespace alexshko.fishingworld.Core {
         {
             if ((mainVcam) && (fishVCam) && (currentActive != fishVCam))
             {
-                //if the currently used cam is also not the main cam, then we should unregister it first:
-                if (currentActive != mainVcam)
-                {
-                    await ResetPriorityOfCurrentCam();
-                }
+                ////if the currently used cam is also not the main cam, then we should unregister it first:
+                //if (currentActive != mainVcam)
+                //{
+                //    ResetPriorityOfCurrentCam();
+                //}
 
                 //set the current active cammera to fish cammera:
-                await SetCurrentCam(fishVCam);
+                SetCurrentCam(fishVCam);
+
+                await Task.Delay(WaitTimeInSeconds * 1000);
             }
         }
 
@@ -65,7 +68,8 @@ namespace alexshko.fishingworld.Core {
         {
             if ((mainVcam) && (fishVCam) && (currentActive != mainVcam))
             {
-                await ResetPriorityOfCurrentCam();
+                ResetPriorityOfCurrentCam();
+                await Task.Delay(WaitTimeInSeconds * 1000);
             }
         }
     }
