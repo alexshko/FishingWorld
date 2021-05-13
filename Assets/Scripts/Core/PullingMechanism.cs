@@ -113,6 +113,10 @@ namespace alexshko.fishingworld.Core
         }
         private bool FishGotLooseFromRod()
         {
+            if (fishResistSlider.CurrentColor == Color.red)
+            {
+                Debug.Log("time in red: " + fishResistSlider.TimeInCurrentColor+". the max: "+ TimeToHoldRed);
+            }
             return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > TimeToHoldRed));
         }
 
