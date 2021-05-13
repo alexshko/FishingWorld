@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 150
   Name: Salamon
   prefab: {fileID: 4970660215292234109, guid: c83ec1c8b72fe51429873b98cc23dabc, type: 3}
-  DiffucltyToCatch: 6
+  DiffucltyToCatch: 7.5
   MaxWeight: 20
   MeanWeight: 2
   CoinsWorth: 5

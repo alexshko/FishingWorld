@@ -69,6 +69,7 @@ namespace alexshko.fishingworld.Core
         private IEnumerator HandleFishPulling()
         {
             bool fishCaught = false;
+            bool fishLoose = false;
             while (FishIsHooked())
             {
                 MakeFishResist();
@@ -77,9 +78,19 @@ namespace alexshko.fishingworld.Core
                     fishCaught = true;
                     break;
                 }
+                if (FishGotLooseFromRod())
+                {
+                    fishLoose = false;
+                    break;
+                }
                 yield return null;
             }
             if (fishCaught)
+            {
+                FisherGuy.GetComponent<FisherGuyController>().PullRod(TookBaitFish);
+                GameManagement.Instance.HandleFishCaught();
+            }
+            else if (fishLoose)
             {
                 FisherGuy.GetComponent<FisherGuyController>().PullRod(TookBaitFish);
                 GameManagement.Instance.HandleFishCaught();
@@ -99,6 +110,10 @@ namespace alexshko.fishingworld.Core
         private bool FishGotCaught()
         {
             return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.green && fishResistSlider.TimeInCurrentColor > TimeToHoldGreen));
+        }
+        private bool FishGotLooseFromRod()
+        {
+            return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > TimeToHoldRed));
         }
 
         private void ResistValueUpdate(float resistAmountToAdd)

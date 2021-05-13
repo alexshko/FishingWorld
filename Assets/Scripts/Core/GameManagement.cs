@@ -23,6 +23,7 @@ namespace alexshko.fishingworld.Core
         public Lake LevelLake;
         [Tooltip("the place to cast the rod")]
         public Transform FishingSpot;
+        public int SecondsToWaitDuringCast;
         #endregion
 
 
@@ -51,12 +52,28 @@ namespace alexshko.fishingworld.Core
             {
                 RandomizeFish();
                 FisherGuy.GetComponent<FisherGuyController>().CastRod(FishingSpot.position);
+
+                //if no fish was chosen then a suitable message will be diplayed and the player will have to do another cast:
+                if (FishTookBait == null)
+                {
+                    HandleNoFishTookBait().ConfigureAwait(false);
+                }
             }
         }
 
         public void HandleFishTookBait(Transform fish)
         {
             GetComponent<PullingMechanism>().enabled = true;
+            Debug.Log("There is a fish. he took the bait.");
+        }
+
+        private async Task HandleNoFishTookBait()
+        {
+            //wait for a while to show that the fish wasn't randomized:
+            await Task.Delay(SecondsToWaitDuringCast*1000);
+            Debug.Log("No fish in the area");
+            FisherGuy.GetComponent<FisherGuyController>().PullRod(null);
+            Instance.FinishFishCatchingCycle();
         }
 
         public void HandleFishCaught()
@@ -64,6 +81,17 @@ namespace alexshko.fishingworld.Core
             Debug.Log("Fish was caught");
             GetComponent<PullingMechanism>().enabled = false;
             ShowNewFishMessage().ConfigureAwait(false);
+        }
+
+        public void HandleFishGotLoose()
+        {
+            Debug.Log("fish got loose");
+            GetComponent<PullingMechanism>().enabled = false;
+
+            //show a message that the fish was lost.
+
+            //Finish the cycle:
+            Instance.FinishFishCatchingCycle();
         }
 
         private async Task ShowNewFishMessage()
@@ -75,7 +103,7 @@ namespace alexshko.fishingworld.Core
             MessageController.instance.ShowMessageNewFish(FishTookBait.GetComponent<Fish>());
         }
 
-        public void FinishFishCaughtCycle()
+        public void FinishFishCatchingCycle()
         {
             HandleEndOfFishCaughtCycle().ConfigureAwait(false);
         }
@@ -96,7 +124,10 @@ namespace alexshko.fishingworld.Core
             }
 
             //destroy the fish:
-            Destroy(FishTookBait.gameObject);
+            if (FishTookBait != null)
+            {
+                Destroy(FishTookBait.gameObject);
+            }
         }
 
         //private void PullFishFromWater()

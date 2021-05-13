@@ -73,7 +73,7 @@ namespace alexshko.fishingworld.UI.Messages
             transform.parent.parent.gameObject.SetActive(false);
 
             //inform the GameManagement that the fishing cycle is finished:
-            GameManagement.Instance.FinishFishCaughtCycle();
+            GameManagement.Instance.FinishFishCatchingCycle();
 
             yield return null;
         }

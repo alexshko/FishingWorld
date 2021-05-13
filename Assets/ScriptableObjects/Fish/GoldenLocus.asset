@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 110
   Name: GoldenLocus
   prefab: {fileID: 1455941771276753047, guid: cff0cc74152f3db4c9bd30a689c31650, type: 3}
-  DiffucltyToCatch: 8
+  DiffucltyToCatch: 9
   MaxWeight: 8
   MeanWeight: 0.75
   CoinsWorth: 100

@@ -2290,13 +2290,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FishPopularity:
   - fish: {fileID: 11400000, guid: 35cdea296345bfb418f6cbd82f12def4, type: 2}
-    popularity: 33
+    popularity: 30
   - fish: {fileID: 11400000, guid: 80d41cf9ae2319a46b1a161355b3fd6f, type: 2}
-    popularity: 33
+    popularity: 10
   - fish: {fileID: 11400000, guid: 9e7c2adb636272542bbd16d150a52ea7, type: 2}
-    popularity: 0
+    popularity: 30
   - fish: {fileID: 11400000, guid: 46c6720e8bb013d479e0393c54536c34, type: 2}
-    popularity: 33
+    popularity: 30
   RippleEffectRef: {fileID: 860214284}
 --- !u!1001 &1196408256
 PrefabInstance:
@@ -2653,7 +2653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1329700556
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2795,6 +2795,7 @@ MonoBehaviour:
   FisherGuy: {fileID: 543450652190186768}
   LevelLake: {fileID: 1137599096}
   FishingSpot: {fileID: 687111250}
+  SecondsToWaitDuringCast: 15
 --- !u!114 &1411411347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,8 +2811,8 @@ MonoBehaviour:
   pullingSlider: {fileID: 1109972694238383946}
   fishResistSlider: {fileID: 2063532552}
   AmountToScutractFromPulling: 10
-  TimeToHoldGreen: 2
-  TimeToHoldRed: 2
+  TimeToHoldGreen: 5
+  TimeToHoldRed: 1
 --- !u!114 &1411411348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3222,8 +3223,8 @@ RectTransform:
   m_Father: {fileID: 1586117006}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.33333337}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
