@@ -47,5 +47,10 @@ namespace alexshko.fishingworld.UI
         {
             StorePanel.gameObject.SetActive(true);
         }
+
+        public void CloseStorePanel()
+        {
+            StorePanel.gameObject.SetActive(false);
+        }
     }
 }
