@@ -80,7 +80,7 @@ namespace alexshko.fishingworld.Core
                 }
                 if (FishGotLooseFromRod())
                 {
-                    fishLoose = false;
+                    fishLoose = true;
                     break;
                 }
                 yield return null;
@@ -92,8 +92,8 @@ namespace alexshko.fishingworld.Core
             }
             else if (fishLoose)
             {
-                FisherGuy.GetComponent<FisherGuyController>().PullRod(TookBaitFish);
-                GameManagement.Instance.HandleFishCaught();
+                FisherGuy.GetComponent<FisherGuyController>().PullRod(null);
+                GameManagement.Instance.HandleFishGotLoose();
             }
         }
 
@@ -105,7 +105,7 @@ namespace alexshko.fishingworld.Core
 
         private bool FishIsHooked()
         {
-            return ((TookBaitFish.GetComponent<Fish>().TookBait) && !(fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > TimeToHoldRed));
+            return ((TookBaitFish.GetComponent<Fish>().TookBait));
         }
         private bool FishGotCaught()
         {
@@ -113,10 +113,10 @@ namespace alexshko.fishingworld.Core
         }
         private bool FishGotLooseFromRod()
         {
-            if (fishResistSlider.CurrentColor == Color.red)
-            {
-                Debug.Log("time in red: " + fishResistSlider.TimeInCurrentColor+". the max: "+ TimeToHoldRed);
-            }
+            //if (fishResistSlider.CurrentColor == Color.red)
+            //{
+            //    Debug.Log("time in red: " + fishResistSlider.TimeInCurrentColor+". the max: "+ TimeToHoldRed);
+            //}
             return ((TookBaitFish.GetComponent<Fish>().TookBait) && (fishResistSlider.CurrentColor == Color.red && fishResistSlider.TimeInCurrentColor > TimeToHoldRed));
         }
 

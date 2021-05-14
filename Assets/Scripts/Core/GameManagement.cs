@@ -110,6 +110,12 @@ namespace alexshko.fishingworld.Core
 
         private async Task HandleEndOfFishCaughtCycle()
         {
+            //destroy the fish:
+            if (FishTookBait != null)
+            {
+                Destroy(FishTookBait.gameObject);
+            }
+
             //set the cam to the person and wait for it to finish:
             await CameraController.Instance.SetFocusOnMainCam();
 
@@ -121,12 +127,6 @@ namespace alexshko.fishingworld.Core
             if (OnFinishedPullingFishCycle != null)
             {
                 OnFinishedPullingFishCycle();
-            }
-
-            //destroy the fish:
-            if (FishTookBait != null)
-            {
-                Destroy(FishTookBait.gameObject);
             }
         }
 
