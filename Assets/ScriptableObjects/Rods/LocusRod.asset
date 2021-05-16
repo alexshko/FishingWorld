@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21486308b3051344abbfb15c2a5d039, type: 3}
   m_Name: LocusRod
   m_EditorClassIdentifier: 
-  id: 100
+  id: 200
   Name: Locus Rod
   prefab: {fileID: 0}
   CoinsPrice: 500
