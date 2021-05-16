@@ -2089,10 +2089,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d90355a0c8bfb84e9896678b6b5fc9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerRodHirarchy: {fileID: 8510814707093277878}
   EndOfLine: {fileID: 6320950099629660948}
   RodFishingLine: {fileID: 8717614806941883078}
-  EndOfLineLooseStancePosition: {fileID: 0}
-  FishingRodTop: {fileID: 0}
   CastSpeed: 1
   PullSpeed: 5
 --- !u!1 &6320950099629660944

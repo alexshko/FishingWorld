@@ -3,21 +3,23 @@ using UnityEngine;
 using alexshko.fishingworld.Enteties;
 using System;
 using alexshko.fishingworld.Core;
+using alexshko.fishingworld.Enteties.Rods;
 
 namespace alexshko.fishingworld.Enteties
 {
     public class FishingLineHinge : MonoBehaviour
     {
+        [Tooltip("the transform which holds the current rod as its child")]
+        public Transform PlayerRodHirarchy;
+
         [Tooltip("the transform that repesents the end tip of the fishing line.")]
         public Transform EndOfLine;
-
         [Tooltip("the rod fishing line")]
         public Transform RodFishingLine;
         [Tooltip("The position to put the end of the line so it will be in loose stance")]
-        public Transform EndOfLineLooseStancePosition;
-
+        private Transform EndOfLineLooseStancePosition;
         [Tooltip("the top of the fishing rod so it will always update its place there")]
-        public Transform FishingRodTop;
+        private Transform FishingRodTop;
 
         [Tooltip("the speed at wich the rod is casted")]
         public float CastSpeed = 1;
@@ -42,7 +44,42 @@ namespace alexshko.fishingworld.Enteties
 
             //put the fish in intial place.
             //PutEndOfLineInNewPosition(EndOfLineLooseStancePosition.position);
+            FindInitialRodComponents();
             EndOfLine.position = EndOfLineLooseStancePosition.position;
+        }
+
+        private void FindInitialRodComponents()
+        {
+            Rod Rod = PlayerRodHirarchy.GetComponentInChildren<Rod>();
+            if (Rod == null)
+            {
+                Debug.LogError("Cannot find the rod object");
+            }
+
+            Transform[] childr = Rod.transform.GetComponentsInChildren<Transform>();
+            if (childr == null || childr.Length < 2)
+            {
+                Debug.LogError("Not sufficiant spot objects included as children of the rod.");
+            }
+            bool LoostTagExist = false;
+            bool RodHingeTagExist = false;
+            foreach (var ch in childr)
+            { 
+                if (ch.tag == "RodLooseEndSpot")
+                {
+                    EndOfLineLooseStancePosition = ch;
+                    LoostTagExist = true;
+                }
+                else if (ch.tag == "RodHinge")
+                {
+                    FishingRodTop = ch;
+                    RodHingeTagExist = true;
+                }
+            }
+            if (!LoostTagExist || !RodHingeTagExist)
+            {
+                Debug.LogError("At least one spot object with the required tags is missing.");
+            }
         }
 
         //Update is called once per frame
