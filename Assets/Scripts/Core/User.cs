@@ -1,6 +1,5 @@
 ﻿using MiniJSON;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace alexshko.fishingworld.Core
@@ -16,14 +15,31 @@ namespace alexshko.fishingworld.Core
         public Dictionary<string, int> Fishes;
 
         //items bought:
+        //name of rods that were bought. each one has a boolean that says if its currently beeing used.
+        public Dictionary<string, bool> RodsBought;
+        public string CurrentRod { get
+            {
+                foreach (var keval in RodsBought)
+                {
+                    if (keval.Value)
+                    {
+                        return keval.Key;
+                    }
+                }
+                return null;
+            } 
+        }
 
         public User()
         {
             Coins = Emeralds  = 0;
             CurrentLevel = 1;
             Fishes = new Dictionary<string, int>();
-            Fishes["Carppie"] = 2;
-            Fishes["Locus"] = 3;
+            //Fishes["Carppie"] = 2;
+            //Fishes["Locus"] = 3;
+
+            RodsBought = new Dictionary<string, bool>();
+            RodsBought["SimpleRod"] = true;
         }
 
         public User(User u)
@@ -31,13 +47,15 @@ namespace alexshko.fishingworld.Core
             this.Coins = u.Coins;
             this.Emeralds = u.Emeralds;
             this.CurrentLevel = u.CurrentLevel;
+            this.RodsBought = new Dictionary<string, bool>(u.RodsBought);
         }
 
         public string ToJson()
         {
             string fishesString = ",\"Fishes\":" + Json.Serialize(Fishes);
+            string RodsString = ",\"Rods\":" + Json.Serialize(RodsBought);
             string dataForJson = JsonUtility.ToJson(this);
-            dataForJson = dataForJson.Substring(0, dataForJson.Length - 1) + fishesString + "}";
+            dataForJson = dataForJson.Substring(0, dataForJson.Length - 1) + fishesString + RodsBought+ "}";
             return dataForJson;
         }
 

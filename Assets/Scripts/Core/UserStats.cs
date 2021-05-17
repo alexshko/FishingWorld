@@ -36,7 +36,18 @@ namespace alexshko.fishingworld.Core
                 UpdateCurrencyValueUI(Currency.Coins, user.Coins);
             }
         }
-        //private int emeralds;
+
+        public string CurrentRod { 
+            get
+            {
+                return user.CurrentRod;
+            }
+            set
+            {
+
+            }
+        }
+
         public int Emeralds
         {
             get
