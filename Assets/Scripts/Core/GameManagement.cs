@@ -130,43 +130,6 @@ namespace alexshko.fishingworld.Core
             }
         }
 
-        //private void PullFishFromWater()
-        //{
-        //    StartCoroutine(GetFishOutOfWater());
-        //}
-
-
-
-        //private IEnumerator GetFishOutOfWater()
-        //{
-        //    //wait for fish to start biting:
-        //    yield return new WaitForSeconds(2f);
-
-        //    //if a fish was caught:
-        //    if (CaughtFish == null)
-        //    {
-        //        Debug.LogFormat("No fish was caught. try again");
-        //    }
-        //    else
-        //    {
-
-
-        //        Debug.LogFormat("a fish was caught: " + CaughtFish.GetComponent<Fish>().FishData.Name);
-        //        //FisherGuy.GetComponent<FisherGuyController>().PullRod(CaughtFish, HandleAfterFishPulled);
-        //        GetComponent<PullingMechanism>().enabled = true;
-        //    }
-        //    yield return null;
-        //}
-
-        //private void HandleAfterFishPulled()
-        //{
-        //    //call an action.
-        //    OnFinishedPullingFish(CaughtFish);
-        //}
-
-
-
-
         //a function that chooses a fish to be caught.
         //consideraing the popularity of the fish in the lake, the rod, the bait and etc.
         private void UpdateFishCatchingFrequancy()
