@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 9164136312842314872, guid: e43c9ddcb39992140ac7ec45dbc6f4c0,
         type: 3}
       propertyPath: m_Name
-      value: SalaomRod
+      value: SalaomRod Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9164136312842314876, guid: e43c9ddcb39992140ac7ec45dbc6f4c0,
         type: 3}
@@ -73,5 +73,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9164136312842314878, guid: e43c9ddcb39992140ac7ec45dbc6f4c0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ffd74b5f0e3af0a4aae7adf8d9ffb7f4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43c9ddcb39992140ac7ec45dbc6f4c0, type: 3}
