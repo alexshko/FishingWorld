@@ -29,6 +29,13 @@ namespace alexshko.fishingworld.Core
                 return null;
             } 
         }
+        public void UnSetAllRods()
+        {
+            foreach (var key in RodsBought.Keys)
+            {
+                RodsBought[key] = false;
+            }
+        }
 
         public User()
         {
@@ -55,7 +62,7 @@ namespace alexshko.fishingworld.Core
             string fishesString = ",\"Fishes\":" + Json.Serialize(Fishes);
             string RodsString = ",\"Rods\":" + Json.Serialize(RodsBought);
             string dataForJson = JsonUtility.ToJson(this);
-            dataForJson = dataForJson.Substring(0, dataForJson.Length - 1) + fishesString + RodsBought+ "}";
+            dataForJson = dataForJson.Substring(0, dataForJson.Length - 1) + fishesString + RodsString + "}";
             return dataForJson;
         }
 

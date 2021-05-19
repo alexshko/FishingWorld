@@ -44,7 +44,14 @@ namespace alexshko.fishingworld.Core
             }
             set
             {
-
+                //unset all the rods of the user
+                user.UnSetAllRods();
+                //mark the new rod in the dictionry of rods as the current one.
+                user.RodsBought[value] = true;
+                //update the data (the new rod) in the DB:
+                UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
+                //update the new rod in the UI.
+                UpdateRodUI(user.CurrentRod);
             }
         }
 
@@ -83,7 +90,13 @@ namespace alexshko.fishingworld.Core
             user = User.FromJson(PlayerPrefs.GetString(Login.PREFS_USER_STATS));
             UpdateCurrencyValueUI(Currency.Coins, user.Coins);
             UpdateCurrencyValueUI(Currency.Emeralds, user.Emeralds);
+            UpdateRodUI(user.CurrentRod);
             //add here init for list of caught fishes.
+        }
+
+        private void UpdateRodUI(string RodUI)
+        {
+            //update RodUI
         }
 
     }
