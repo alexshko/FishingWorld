@@ -6,6 +6,34 @@ namespace alexshko.fishingworld.Core
 {
     public class User
     {
+        #region singelton variables:
+        private static User instance;
+        private static readonly object padlock = new object();
+
+        public static User Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new User();
+                    }
+                    return instance;
+                }
+            }
+            set
+            {
+                lock (padlock)
+                {
+                    instance = value;
+                }
+            }
+        }
+
+        #endregion
+
         public int Coins;
         public int Emeralds;
 

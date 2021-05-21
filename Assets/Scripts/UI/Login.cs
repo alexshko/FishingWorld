@@ -215,8 +215,8 @@ namespace alexshko.fishingworld.UI
 
         private async Task InitUserDataAndStartLevel()
         {
-            User userdata = await UserFirebaseDataBase.Instance.ReadUserCreateEmptyIfNotExistInDB();
-            PlayerPrefs.SetString(PREFS_USER_STATS, userdata.ToJson());
+            User.Instance = await UserFirebaseDataBase.Instance.ReadUserCreateEmptyIfNotExistInDB();
+            //PlayerPrefs.SetString(PREFS_USER_STATS, userdata.ToJson());
             Debug.Log("created empty user");
             //Load the Main Scene:
             StartCoroutine(LoadMainMenu());

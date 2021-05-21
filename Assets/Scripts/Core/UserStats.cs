@@ -14,7 +14,17 @@ namespace alexshko.fishingworld.Core
         public Transform CoinsRef;
         public Transform EmeraldsRef;
 
-        private User user;
+        private static User user
+        {
+            get
+            {
+                return User.Instance;
+            }
+            set
+            {
+                User.Instance = value;
+            }
+        }
 
         private void UpdateCurrencyValueUI(Currency cur, int val)
         {
@@ -38,35 +48,6 @@ namespace alexshko.fishingworld.Core
             }
         }
 
-        public string CurrentRod { 
-            get
-            {
-                return user.CurrentRod;
-            }
-            set
-            {
-                //mark the new rod in the dictionry of rods as the current one.
-                user.CurrentRod = value;
-                //update the data (the new rod) in the DB:
-                UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
-                //update the new rod in the UI.
-                UpdateRodUI(user.CurrentRod);
-            }
-        }
-
-        public Dictionary<string, bool> RodsBoughtDict
-        {
-            get
-            {
-                return user.RodsBought;
-            }
-        }
-
-        public void AddRodToDict(string RodName)
-        {
-            if (RodsBoughtDict.ContainsKey(RodName)) return;
-            user.RodsBought[RodName] = false;
-        }
         public int Emeralds
         {
             get
@@ -88,22 +69,16 @@ namespace alexshko.fishingworld.Core
         {
             instance = this;
             //userID = PlayerPrefs.GetString(Login.PREFS_NAME);
-            ReadUserDataAndUpdateUI();
+            UpdateUI();
         }
 
-        private void ReadUserDataAndUpdateUI()
+        private void UpdateUI()
         {
             //user = await UserFirebaseDataBase.Instance.ReadUserData(UserFirebaseDataBase.TimeoutMillis);
-            user = User.FromJson(PlayerPrefs.GetString(Login.PREFS_USER_STATS));
+            //user = User.FromJson(PlayerPrefs.GetString(Login.PREFS_USER_STATS));
             UpdateCurrencyValueUI(Currency.Coins, user.Coins);
             UpdateCurrencyValueUI(Currency.Emeralds, user.Emeralds);
-            UpdateRodUI(user.CurrentRod);
             //add here init for list of caught fishes.
-        }
-
-        private void UpdateRodUI(string RodUI)
-        {
-            //update RodUI
         }
 
     }
