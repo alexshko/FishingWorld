@@ -115,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 426642719648965047, guid: 7aa97457b3bac034b8929fefc6fd78fe,
         type: 3}
       propertyPath: m_Name
-      value: PropToBuy
+      value: LocusRodStoreItem
       objectReference: {fileID: 0}
     - target: {fileID: 426642721028151163, guid: 7aa97457b3bac034b8929fefc6fd78fe,
         type: 3}
@@ -123,5 +123,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5214728725491246469, guid: f13f2a8ce99ebed40b2631691cdab319,
         type: 3}
+    - target: {fileID: 3796080451272593938, guid: 7aa97457b3bac034b8929fefc6fd78fe,
+        type: 3}
+      propertyPath: RodData
+      value: 
+      objectReference: {fileID: 11400000, guid: 130af42e9790df144979bdf6bd682d4c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa97457b3bac034b8929fefc6fd78fe, type: 3}

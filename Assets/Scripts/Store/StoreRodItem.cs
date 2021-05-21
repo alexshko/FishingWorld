@@ -1,8 +1,10 @@
 ﻿using alexshko.fishingworld.Core;
 using alexshko.fishingworld.Enteties.Rods;
+using UnityEngine;
+
 namespace alexshko.fishingworld.Store
 {
-    public class StoreRodItem : IStoreItem
+    public class StoreRodItem : MonoBehaviour, IStoreItem
     {
         public RodScriptableObject RodData;
 

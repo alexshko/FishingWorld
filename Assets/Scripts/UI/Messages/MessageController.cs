@@ -1,4 +1,5 @@
 ﻿using alexshko.fishingworld.Enteties.Fishes;
+using alexshko.fishingworld.Store;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,11 @@ namespace alexshko.fishingworld.UI.Messages {
             NewFishMessageText msg = GetComponentInChildren<NewFishMessageText>(includeInactive: true);
             if (!msg) return;
             msg.gameObject.SetActive(false);
+        }
+
+        public void ShowMessageBuyStoreItem(StoreRodItem item)
+        {
+
         }
     }
 }
