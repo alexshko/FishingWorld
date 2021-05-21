@@ -17,7 +17,8 @@ namespace alexshko.fishingworld.Core
         //items bought:
         //name of rods that were bought. each one has a boolean that says if its currently beeing used.
         public Dictionary<string, bool> RodsBought;
-        public string CurrentRod { get
+        public string CurrentRod { 
+            get
             {
                 foreach (var keval in RodsBought)
                 {
@@ -27,9 +28,14 @@ namespace alexshko.fishingworld.Core
                     }
                 }
                 return null;
-            } 
+            }
+            set
+            {
+                UnSetAllRods();
+                RodsBought[value] = true;
+            }
         }
-        public void UnSetAllRods()
+        private void UnSetAllRods()
         {
             foreach (var key in RodsBought.Keys)
             {

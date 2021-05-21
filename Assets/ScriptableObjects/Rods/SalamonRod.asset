@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 300
   Name: Salamon Rod
-  prefab: {fileID: 0}
+  prefab: {fileID: 884277002587748591, guid: 108f8a338f7e5db438ce3dc6e001d30d, type: 3}
   CoinsPrice: 500
   EmeraldsPrice: 25
   FishBonuses:

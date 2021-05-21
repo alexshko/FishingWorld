@@ -3,6 +3,7 @@ using TMPro;
 using alexshko.fishingworld.UI;
 using alexshko.fishingworld.Core.DB;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace alexshko.fishingworld.Core
 {
@@ -44,10 +45,8 @@ namespace alexshko.fishingworld.Core
             }
             set
             {
-                //unset all the rods of the user
-                user.UnSetAllRods();
                 //mark the new rod in the dictionry of rods as the current one.
-                user.RodsBought[value] = true;
+                user.CurrentRod = value;
                 //update the data (the new rod) in the DB:
                 UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
                 //update the new rod in the UI.
@@ -55,6 +54,19 @@ namespace alexshko.fishingworld.Core
             }
         }
 
+        public Dictionary<string, bool> RodsBoughtDict
+        {
+            get
+            {
+                return user.RodsBought;
+            }
+        }
+
+        public void AddRodToDict(string RodName)
+        {
+            if (RodsBoughtDict.ContainsKey(RodName)) return;
+            user.RodsBought[RodName] = false;
+        }
         public int Emeralds
         {
             get
@@ -69,11 +81,6 @@ namespace alexshko.fishingworld.Core
                 UpdateCurrencyValueUI(Currency.Emeralds, user.Emeralds);
             }
         }
-        //public int RoyalStarts { get; set; }
-
-        //public int FishCaught { get; set; }
-
-        //private string userID;
 
         public static UserStats instance;
 

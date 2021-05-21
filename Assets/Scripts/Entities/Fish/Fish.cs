@@ -38,7 +38,7 @@ namespace alexshko.fishingworld.Enteties.Fishes {
             //weight = Random.Range(min, max);
 
             //randomize with normal distribution of (meanWeight, 10f) and make sure its not more than maxWeight and not less than 0.5 kilos.
-            weight = Mathf.Clamp((float)RandomizeWeight(meanWeight, 10f),0.5f,maxWeight);
+            weight = Mathf.Clamp((float)RandomizeWeight(meanWeight, 10f), minWeight, maxWeight);
 
             tookBait = false;
             CurrentResist = 0;

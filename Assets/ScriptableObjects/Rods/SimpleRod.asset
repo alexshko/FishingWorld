@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 100
   Name: Simple Rod
-  prefab: {fileID: 0}
+  prefab: {fileID: 9164136312842314872, guid: e43c9ddcb39992140ac7ec45dbc6f4c0, type: 3}
   CoinsPrice: 1
   EmeraldsPrice: 0
   FishBonuses: []
