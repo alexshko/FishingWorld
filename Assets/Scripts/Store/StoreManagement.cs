@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace alexshko.fishingworld.Store
 {
+    [RequireComponent(typeof(UserStats))]
     public class StoreManagement : MonoBehaviour
     {
         private User user;
@@ -16,12 +17,6 @@ namespace alexshko.fishingworld.Store
         {
             instance = this;
             user = User.FromJson(PlayerPrefs.GetString(Login.PREFS_USER_STATS));
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
