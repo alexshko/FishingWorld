@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace alexshko.fishingworld.UI
 {
-    [RequireComponent(typeof(UIStoreItem))]
+    [RequireComponent(typeof(StoreRodItem))]
     public class UIStoreItem : MonoBehaviour
     {
         public static string txtCoinsPriceName = "txtCoinsPrice";

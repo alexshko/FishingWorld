@@ -30,7 +30,7 @@ namespace alexshko.fishingworld.Store
             instance = this;
         }
 
-        public string CurrentRod
+        public string CurrentEquippedRod
         {
             get
             {

@@ -40,6 +40,12 @@ namespace alexshko.fishingworld.Store
             }
         }
 
+        public string ItemName => RodData.Name;
+
+        public string ItemDesc => "+20 to Salamon";
+
+        public string ImageLink => "fishingrod";
+
         public bool Buy()
         {
             if (this.isCapableBuying)
@@ -55,7 +61,7 @@ namespace alexshko.fishingworld.Store
         {
             if (this.isAlreadyBaught)
             {
-                StoreManagement.instance.CurrentRod = RodData.Name;
+                StoreManagement.instance.CurrentEquippedRod = RodData.Name;
             }
         }
     }

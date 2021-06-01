@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using alexshko.fishingworld.Store;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +17,11 @@ public class BuyItemMessageText : MonoBehaviour
     private int emeraldsPrice;
     private string imageLink;
 
-    public string ItemName
+    private IStoreItem itemToBuy;
+
+    private Coroutine ImageLoadRoutine = null;
+
+    private string ItemName
     {
         get => itemName;
         set
@@ -26,7 +30,7 @@ public class BuyItemMessageText : MonoBehaviour
             ItemNameRef.GetComponent<Text>().text = value;
         }
     }
-    public string ItemDescr
+    private string ItemDescr
     {
         get => itemDescr;
         set
@@ -34,5 +38,68 @@ public class BuyItemMessageText : MonoBehaviour
             itemDescr = value;
             ItemDescriptionRef.GetComponent<Text>().text = value;
         }
+    }
+    private int CoinsPrice
+    {
+        get => coinsPrice;
+        set
+        {
+            coinsPrice = value;
+            ItemCoinsPriceRef.GetComponent<Text>().text = value.ToString();
+        }
+    }
+    private int EmeraldsPrice
+    {
+        get => emeraldsPrice;
+        set
+        {
+            emeraldsPrice = value;
+            ItemEmeraldsPriceRef.GetComponent<Text>().text = value.ToString();
+        }
+    }
+
+    private string ImageLink
+    {
+        get => imageLink;
+        set
+        {
+            imageLink = value;
+
+            //Load the Image with coroutine:
+            if (ImageLoadRoutine != null)
+            {
+                StopCoroutine(ImageLoadRoutine);
+            }
+            ImageLoadRoutine = StartCoroutine(LoadImage());
+        }
+    }
+
+    private IEnumerator LoadImage()
+    {
+        ResourceRequest re = Resources.LoadAsync<Sprite>(ImageLink);
+        while (!re.isDone)
+        {
+            yield return null;
+        }
+        ItemImageRef.sprite = re.asset as Sprite;
+    }
+
+    public IStoreItem ItemToBuy
+    {
+        get => itemToBuy;
+        set
+        {
+            itemToBuy = value;
+            ItemName = value.ItemName;
+            ItemDescr = value.ItemDesc;
+            CoinsPrice = value.CoinsPrice;
+            EmeraldsPrice = value.EmeraldPrice;
+            ImageLink = value.ImageLink;
+        }
+    }
+
+    public void BuyItem()
+    {
+        Debug.Log("Bought item: " + ItemToBuy.ItemName);
     }
 }
