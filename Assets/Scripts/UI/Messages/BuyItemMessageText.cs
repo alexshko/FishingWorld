@@ -9,17 +9,15 @@ public class BuyItemMessageText : MonoBehaviour
     public Transform ItemDescriptionRef;
     public Transform ItemCoinsPriceRef;
     public Transform ItemEmeraldsPriceRef;
-    public Image ItemImageRef;
+    public Transform ItemImageRef;
 
     private string itemName;
     private string itemDescr;
     private int coinsPrice;
     private int emeraldsPrice;
-    private string imageLink;
+    private GameObject imageLink;
 
     private IStoreItem itemToBuy;
-
-    private Coroutine ImageLoadRoutine = null;
 
     private string ItemName
     {
@@ -58,30 +56,26 @@ public class BuyItemMessageText : MonoBehaviour
         }
     }
 
-    private string ImageLink
+    private GameObject ImageLink
     {
         get => imageLink;
         set
         {
             imageLink = value;
 
-            //Load the Image with coroutine:
-            if (ImageLoadRoutine != null)
+            //if there is currently a ui pic then destroy it.
+            foreach (var curImage in ItemImageRef.GetComponentsInChildren<Image>())
             {
-                StopCoroutine(ImageLoadRoutine);
-            }
-            ImageLoadRoutine = StartCoroutine(LoadImage());
-        }
-    }
+                if (curImage != null && curImage.tag!="UiCircleSprite")
+                {
+                    Destroy(curImage.gameObject);
+                }
 
-    private IEnumerator LoadImage()
-    {
-        ResourceRequest re = Resources.LoadAsync<Sprite>(ImageLink);
-        while (!re.isDone)
-        {
-            yield return null;
+            } 
+
+            GameObject newImage = Instantiate(ImageLink, ItemImageRef);
+            newImage.SetActive(true);
         }
-        ItemImageRef.sprite = re.asset as Sprite;
     }
 
     public IStoreItem ItemToBuy
@@ -95,11 +89,14 @@ public class BuyItemMessageText : MonoBehaviour
             CoinsPrice = value.CoinsPrice;
             EmeraldsPrice = value.EmeraldPrice;
             ImageLink = value.ImageLink;
+
+            //add here choosing of the corect button: buy or equip.
         }
     }
 
     public void BuyItem()
     {
         Debug.Log("Bought item: " + ItemToBuy.ItemName);
+        ItemToBuy.Buy();
     }
 }

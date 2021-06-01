@@ -44,7 +44,7 @@ namespace alexshko.fishingworld.Store
 
         public string ItemDesc => "+20 to Salamon";
 
-        public string ImageLink => "fishingrod";
+        public GameObject ImageLink => RodData.Rod2DImagePref;
 
         public bool Buy()
         {

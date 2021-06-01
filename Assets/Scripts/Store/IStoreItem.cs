@@ -8,7 +8,7 @@ namespace alexshko.fishingworld.Store
     {
         string ItemName { get; }
         string ItemDesc { get; }
-        string ImageLink { get; }
+        GameObject ImageLink { get; }
         int CoinsPrice { get; }
         int EmeraldPrice { get; }
         bool isAlreadyBaught { get; }

@@ -73,7 +73,7 @@ namespace alexshko.fishingworld.Core
 
         public User()
         {
-            Coins = Emeralds  = 0;
+            Coins = Emeralds  = 1000;
             CurrentLevel = 1;
             Fishes = new Dictionary<string, int>();
             //Fishes["Carppie"] = 2;
@@ -94,7 +94,7 @@ namespace alexshko.fishingworld.Core
         public string ToJson()
         {
             string fishesString = ",\"Fishes\":" + Json.Serialize(Fishes);
-            string RodsString = ",\"Rods\":" + Json.Serialize(RodsBought);
+            string RodsString = ",\"RodsBought\":" + Json.Serialize(RodsBought);
             string dataForJson = JsonUtility.ToJson(this);
             dataForJson = dataForJson.Substring(0, dataForJson.Length - 1) + fishesString + RodsString + "}";
             return dataForJson;

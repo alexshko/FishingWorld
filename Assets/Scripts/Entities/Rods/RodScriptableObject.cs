@@ -1,6 +1,7 @@
 ﻿using alexshko.fishingworld.Enteties.Fishes;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace alexshko.fishingworld.Enteties.Rods
 {
@@ -13,6 +14,8 @@ namespace alexshko.fishingworld.Enteties.Rods
         public string Name;
         [Tooltip("the prefab of the Rod defined by this Scriptable Object")]
         public GameObject prefab;
+        [Tooltip("the 2d image for the ui messages")]
+        public GameObject Rod2DImagePref;
         [Tooltip("the price of Rod in Coins")]
         public int CoinsPrice;
         [Tooltip("the price of Rod in Emeralds")]
