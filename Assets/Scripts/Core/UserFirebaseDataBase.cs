@@ -69,6 +69,8 @@ namespace alexshko.fishingworld.Core.DB
                             {
                                 DataSnapshot data = execTask.Result.Child(user.UserId);
                                 u = JsonUtility.FromJson<User>(data.GetRawJsonValue());
+                                DataSnapshot userRods = execTask.Result.Child(user.UserId).Child("RodsBought");
+                                u.RodsBought = CastDictionaryToBoolVals(Json.Deserialize(userRods.GetRawJsonValue()) as Dictionary<string, object>);
                                 //u = (User)(Json.Deserialize(data.GetRawJsonValue()));
                             }
                         }
@@ -117,6 +119,17 @@ namespace alexshko.fishingworld.Core.DB
         {
             string dataForJson = u.ToJson();
             await dbRef.Child(user.UserId).SetRawJsonValueAsync(dataForJson);
+        }
+
+        private Dictionary<string,bool> CastDictionaryToBoolVals(Dictionary<string, object> olddict)
+        {
+            Dictionary<string, bool> newDict = new Dictionary<string, bool>();
+            foreach (var item in olddict)
+            {
+                KeyValuePair<string, bool> keyval = new KeyValuePair<string, bool>(item.Key, (bool)(item.Value));
+                newDict.Add(item.Key, (bool)(item.Value));
+            }
+            return newDict.Count > 0 ? newDict : null;
         }
     }
 }
