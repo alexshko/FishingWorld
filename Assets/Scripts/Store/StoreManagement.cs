@@ -92,10 +92,7 @@ namespace alexshko.fishingworld.Store
                 }
 
                 //delete current rods:
-                foreach (var EquippedRod in ContainerParent.GetComponentsInChildren<Rod>())
-                {
-                    Destroy(EquippedRod.gameObject);
-                } 
+                Destroy(currentEquippedRod.gameObject);
 
                 //add the new Rod:
                 Instantiate(rod.prefab, ContainerParent.transform);
