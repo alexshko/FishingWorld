@@ -55,10 +55,10 @@ namespace alexshko.fishingworld.Store
             }
         }
 
-        public void AddRodToDict(string RodName)
+        public void AddRodToDict(string RodId)
         {
-            if (RodsBoughtDict.ContainsKey(RodName)) return;
-            RodsBoughtDict[RodName] = false;
+            if (RodsBoughtDict.ContainsKey(RodId)) return;
+            RodsBoughtDict[RodId] = false;
             //update the data (the new rod) in the DB:
             UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
         }

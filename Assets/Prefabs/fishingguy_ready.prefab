@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 8510814707093277878}
   m_Layer: 0
   m_Name: PlayersRod
-  m_TagString: Untagged
+  m_TagString: RodContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3704,7 +3704,7 @@ PrefabInstance:
     - target: {fileID: 884277002587748591, guid: 108f8a338f7e5db438ce3dc6e001d30d,
         type: 3}
       propertyPath: m_Name
-      value: SalaomRod Variant
+      value: Salamon Rod
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 108f8a338f7e5db438ce3dc6e001d30d, type: 3}

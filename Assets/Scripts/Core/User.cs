@@ -80,7 +80,8 @@ namespace alexshko.fishingworld.Core
             //Fishes["Locus"] = 3;
 
             RodsBought = new Dictionary<string, bool>();
-            RodsBought["SimpleRod"] = true;
+            //put a simple rod:
+            RodsBought["100"] = true;
         }
 
         public User(User u)

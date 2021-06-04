@@ -9,6 +9,7 @@ TagManager:
   - RodLooseEndSpot
   - RodHinge
   - UiCircleSprite
+  - RodContainer
   layers:
   - Default
   - TransparentFX
