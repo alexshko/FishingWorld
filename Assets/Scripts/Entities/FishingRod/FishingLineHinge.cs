@@ -46,7 +46,6 @@ namespace alexshko.fishingworld.Enteties
             //put the fish in intial place.
             //PutEndOfLineInNewPosition(EndOfLineLooseStancePosition.position);
             FindInitialRodComponents();
-            EndOfLine.position = EndOfLineLooseStancePosition.position;
 
             //register for new rod equipped action in StoreManagement. update the RodComponents.
             StoreManagement.instance.OnRodEquipped += FindInitialRodComponents;
@@ -58,13 +57,15 @@ namespace alexshko.fishingworld.Enteties
             Rod Rod = PlayerRodHirarchy.GetComponentInChildren<Rod>();
             if (Rod == null)
             {
-                Debug.LogError("Cannot find the rod object");
+                Debug.Log("Cannot find the rod object");
+                return;
             }
 
             Transform[] childr = Rod.transform.GetComponentsInChildren<Transform>();
             if (childr == null || childr.Length < 2)
             {
-                Debug.LogError("Not sufficiant spot objects included as children of the rod.");
+                Debug.Log("Not sufficiant spot objects included as children of the rod.");
+                return;
             }
             bool LoostTagExist = false;
             bool RodHingeTagExist = false;
@@ -85,6 +86,7 @@ namespace alexshko.fishingworld.Enteties
             {
                 Debug.LogError("At least one spot object with the required tags is missing.");
             }
+            EndOfLine.position = EndOfLineLooseStancePosition.position;
         }
 
         //Update is called once per frame

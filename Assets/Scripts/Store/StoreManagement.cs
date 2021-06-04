@@ -86,13 +86,17 @@ namespace alexshko.fishingworld.Store
             {
                 //check if the rod isn't already equiped in the ui:
                 Rod currentEquippedRod = ContainerParent.GetComponentInChildren<Rod>();
-                if (!currentEquippedRod || (currentEquippedRod.data.id == rod.id))
+                if (currentEquippedRod)
                 {
-                    return;
-                }
+                    if (currentEquippedRod.data.id == rod.id)
+                    {
+                        //we should not reload the UI if it's the same rod as the equiped one.
+                        return;
+                    }
 
-                //delete current rods:
-                Destroy(currentEquippedRod.gameObject);
+                    //if there is a rod equiped and its not the wanted one, then destroy it:
+                    Destroy(currentEquippedRod.gameObject);
+                }
 
                 //add the new Rod:
                 Instantiate(rod.prefab, ContainerParent.transform);
