@@ -52,6 +52,9 @@ namespace alexshko.fishingworld.UI
             if (StoreItem != null)
             {
                 MessageController.instance.ShowMessageBuyStoreItem(StoreItem);
+
+                //close the window of the store:
+                gameObject.SetActive(false);
             }
         }
     }

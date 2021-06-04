@@ -1,7 +1,7 @@
 ﻿using alexshko.fishingworld.Core;
 using alexshko.fishingworld.Core.DB;
-using alexshko.fishingworld.UI;
-using System.Collections;
+using alexshko.fishingworld.Enteties.Rods;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,12 +22,20 @@ namespace alexshko.fishingworld.Store
             }
         }
 
+        //will be called when a rod has been equipped:
+        //FishingLineHinge : awake.
+        public Action OnRodEquipped;
         public static StoreManagement instance;
 
         // Use this for initialization
         private void Awake()
         {
             instance = this;
+        }
+        private void Start()
+        {
+            //make sure that the correct rod is equpped in the scene.
+            UpdateRodUI(user.CurrentRod);
         }
 
         public string CurrentEquippedRod
@@ -43,7 +51,7 @@ namespace alexshko.fishingworld.Store
                 //update the data (the new rod) in the DB:
                 UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
                 //update the new rod in the UI.
-                UpdateRodUI(user.CurrentRod);
+                UpdateRodUI(value);
             }
         }
 
@@ -63,9 +71,39 @@ namespace alexshko.fishingworld.Store
             UserFirebaseDataBase.Instance.SaveUserData(user).ConfigureAwait(false);
         }
 
-        private void UpdateRodUI(string RodUI)
+        private void UpdateRodUI(string RodToEquip)
         {
-            //update RodUI
+            //find the correct RodScriptableObject:
+            RodScriptableObject rod = Resources.Load<RodScriptableObject>(RodToEquip);
+            if (!rod)
+            {
+                Debug.LogError("Couldn't load the rod");
+            }
+
+            Debug.Log("Equipping rod: " + rod.Name);
+            GameObject ContainerParent = GameObject.FindWithTag("RodContainer");
+            if (ContainerParent)
+            {
+                //check if the rod isn't already equiped in the ui:
+                Rod currentEquippedRod = ContainerParent.GetComponentInChildren<Rod>();
+                if (!currentEquippedRod || (currentEquippedRod.data.id == rod.id))
+                {
+                    return;
+                }
+
+                //delete current rods:
+                foreach (var EquippedRod in ContainerParent.GetComponentsInChildren<Rod>())
+                {
+                    Destroy(EquippedRod.gameObject);
+                } 
+
+                //add the new Rod:
+                Instantiate(rod.prefab, ContainerParent.transform);
+                if (OnRodEquipped !=null)
+                {
+                    OnRodEquipped();
+                }
+            }
         }
     }
 }

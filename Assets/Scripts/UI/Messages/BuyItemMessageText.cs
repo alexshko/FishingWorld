@@ -10,6 +10,8 @@ public class BuyItemMessageText : MonoBehaviour
     public Transform ItemCoinsPriceRef;
     public Transform ItemEmeraldsPriceRef;
     public Transform ItemImageRef;
+    public Transform BtnBuyRef;
+    public Transform BtnEquipRef;
 
     private string itemName;
     private string itemDescr;
@@ -90,13 +92,33 @@ public class BuyItemMessageText : MonoBehaviour
             EmeraldsPrice = value.EmeraldPrice;
             ImageLink = value.ImageLink;
 
-            //add here choosing of the corect button: buy or equip.
+            UpdateButtons();
         }
+    }
+
+    private void UpdateButtons()
+    {
+        //choose the correct button, if can equip or has to buy first.
+        BtnBuyRef.gameObject.SetActive(ItemToBuy.isCapableBuying);
+        BtnEquipRef.gameObject.SetActive(ItemToBuy.isAlreadyBaught);
     }
 
     public void BuyItem()
     {
         Debug.Log("Bought item: " + ItemToBuy.ItemName);
         ItemToBuy.Buy();
+
+        UpdateButtons();
+        ////close the window of the message:
+        //gameObject.SetActive(false);
+    }
+
+    public void EquipItem()
+    {
+        Debug.Log("Equiped item: " + ItemToBuy.ItemName);
+        ItemToBuy.Equip();
+
+        //close the window of the message:
+        gameObject.SetActive(false);
     }
 }

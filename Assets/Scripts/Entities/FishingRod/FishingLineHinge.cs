@@ -4,6 +4,7 @@ using alexshko.fishingworld.Enteties;
 using System;
 using alexshko.fishingworld.Core;
 using alexshko.fishingworld.Enteties.Rods;
+using alexshko.fishingworld.Store;
 
 namespace alexshko.fishingworld.Enteties
 {
@@ -46,10 +47,14 @@ namespace alexshko.fishingworld.Enteties
             //PutEndOfLineInNewPosition(EndOfLineLooseStancePosition.position);
             FindInitialRodComponents();
             EndOfLine.position = EndOfLineLooseStancePosition.position;
+
+            //register for new rod equipped action in StoreManagement. update the RodComponents.
+            StoreManagement.instance.OnRodEquipped += FindInitialRodComponents;
         }
 
         private void FindInitialRodComponents()
         {
+            Debug.Log("how many rods: " + PlayerRodHirarchy.GetComponentsInChildren<Rod>().Length);
             Rod Rod = PlayerRodHirarchy.GetComponentInChildren<Rod>();
             if (Rod == null)
             {

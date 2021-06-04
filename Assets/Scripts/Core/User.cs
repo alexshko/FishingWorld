@@ -65,7 +65,8 @@ namespace alexshko.fishingworld.Core
         }
         private void UnSetAllRods()
         {
-            foreach (var key in RodsBought.Keys)
+            List<string> listOfKeys = new List<string>(RodsBought.Keys);
+            foreach (var key in listOfKeys)
             {
                 RodsBought[key] = false;
             }
@@ -81,7 +82,7 @@ namespace alexshko.fishingworld.Core
 
             RodsBought = new Dictionary<string, bool>();
             //put a simple rod:
-            RodsBought["100"] = true;
+            RodsBought["SimpleRod"] = true;
         }
 
         public User(User u)

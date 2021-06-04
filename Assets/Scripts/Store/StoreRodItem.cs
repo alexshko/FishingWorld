@@ -28,7 +28,7 @@ namespace alexshko.fishingworld.Store
         {
             get
             {
-                return StoreManagement.instance.RodsBoughtDict.ContainsKey(RodData.Name);
+                return StoreManagement.instance.RodsBoughtDict.ContainsKey(RodData.id);
             }
         }
 
@@ -52,7 +52,7 @@ namespace alexshko.fishingworld.Store
             {
                 UserStats.instance.Emeralds -= EmeraldPrice;
                 UserStats.instance.Coins -= CoinsPrice;
-                StoreManagement.instance.AddRodToDict(RodData.id.ToString());
+                StoreManagement.instance.AddRodToDict(RodData.id);
             }
             return this.isCapableBuying;
         }
@@ -61,7 +61,7 @@ namespace alexshko.fishingworld.Store
         {
             if (this.isAlreadyBaught)
             {
-                StoreManagement.instance.CurrentEquippedRod = RodData.id.ToString();
+                StoreManagement.instance.CurrentEquippedRod = RodData.id;
             }
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21486308b3051344abbfb15c2a5d039, type: 3}
   m_Name: SalamonRod
   m_EditorClassIdentifier: 
-  id: 300
+  id: SalamonRod
   Name: Salamon Rod
   prefab: {fileID: 884277002587748591, guid: 108f8a338f7e5db438ce3dc6e001d30d, type: 3}
   Rod2DImagePref: {fileID: 3390087254618973244, guid: cf4c8018d2dee604f93be2fecb84e912,

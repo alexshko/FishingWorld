@@ -9,7 +9,7 @@ namespace alexshko.fishingworld.Enteties.Rods
     public class RodScriptableObject : ScriptableObject
     {
         [Tooltip("the id of the Rod")]
-        public int id;
+        public string id;
         [Tooltip("the name of the Rod")]
         public string Name;
         [Tooltip("the prefab of the Rod defined by this Scriptable Object")]
