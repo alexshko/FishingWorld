@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 9164136312842314872, guid: e43c9ddcb39992140ac7ec45dbc6f4c0,
         type: 3}
       propertyPath: m_Name
-      value: SalaomRod Variant
+      value: Salamon Rod
       objectReference: {fileID: 0}
     - target: {fileID: 9164136312842314876, guid: e43c9ddcb39992140ac7ec45dbc6f4c0,
         type: 3}
