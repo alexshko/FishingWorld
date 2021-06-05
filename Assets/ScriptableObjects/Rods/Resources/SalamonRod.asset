@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: SalamonRod
   Name: Salamon Rod
+  Description: Rod specialy for catching Salamon
   prefab: {fileID: 884277002587748591, guid: 108f8a338f7e5db438ce3dc6e001d30d, type: 3}
   Rod2DImagePref: {fileID: 3390087254618973244, guid: cf4c8018d2dee604f93be2fecb84e912,
     type: 3}

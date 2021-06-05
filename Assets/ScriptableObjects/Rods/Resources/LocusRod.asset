@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: LocusRod
   Name: Locus Rod
+  Description: Rod specialy for catching Locus
   prefab: {fileID: 0}
   Rod2DImagePref: {fileID: 0}
   CoinsPrice: 500

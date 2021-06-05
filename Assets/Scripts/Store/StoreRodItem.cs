@@ -42,7 +42,7 @@ namespace alexshko.fishingworld.Store
 
         public string ItemName => RodData.Name;
 
-        public string ItemDesc => "+20 to Salamon";
+        public string ItemDesc => RodData.Description;
 
         public GameObject ImageLink => RodData.Rod2DImagePref;
 

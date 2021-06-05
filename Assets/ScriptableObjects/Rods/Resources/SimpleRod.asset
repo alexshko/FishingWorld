@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: SimpleRod
   Name: Simple Rod
+  Description: Regular yet fine rod
   prefab: {fileID: 9164136312842314872, guid: e43c9ddcb39992140ac7ec45dbc6f4c0, type: 3}
   Rod2DImagePref: {fileID: 5785068375339364862, guid: 33ba37ebcf6a85b45891a4199d3b0129,
     type: 3}
-  CoinsPrice: 1
+  CoinsPrice: 0
   EmeraldsPrice: 0
   FishBonuses: []
   BoostCoins: 0

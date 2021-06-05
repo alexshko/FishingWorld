@@ -12,6 +12,8 @@ namespace alexshko.fishingworld.Enteties.Rods
         public string id;
         [Tooltip("the name of the Rod")]
         public string Name;
+        [Tooltip("the description of the Rod")]
+        public string Description;
         [Tooltip("the prefab of the Rod defined by this Scriptable Object")]
         public GameObject prefab;
         [Tooltip("the 2d image for the ui messages")]
