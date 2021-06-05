@@ -92,18 +92,13 @@ namespace alexshko.fishingworld.Enteties
         //Update is called once per frame
         void LateUpdate()
         {
-            transform.position = FishingRodTop.position;
-
-            //if (isInLooseState)
-            //{
-            //    PutEndOfLineInNewPosition(EndOfLineLooseStancePosition.position);
-            //}
-            //else
-            //{
-            //    PutEndOfLineInNewPosition(EndOfLine.position);
-            //}
-            PutEndOfLineInNewPosition(EndOfLine.position);
-            UpdatePointOfContactOnLake();
+            //FishingRodTop and EndOfLine might be null during chaning of the rod. LAteUpdate should not be executed during that time.
+            if (FishingRodTop && EndOfLine)
+            {
+                transform.position = FishingRodTop.position;
+                PutEndOfLineInNewPosition(EndOfLine.position);
+                UpdatePointOfContactOnLake();
+            }
         }
 
         private void PutEndOfLineInNewPosition(Vector3 newPos)

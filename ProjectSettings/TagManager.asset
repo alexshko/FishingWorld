@@ -10,6 +10,7 @@ TagManager:
   - RodHinge
   - UiCircleSprite
   - RodContainer
+  - StorePanel
   layers:
   - Default
   - TransparentFX

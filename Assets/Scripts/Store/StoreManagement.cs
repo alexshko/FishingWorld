@@ -95,6 +95,7 @@ namespace alexshko.fishingworld.Store
                     }
 
                     //if there is a rod equiped and its not the wanted one, then destroy it:
+                    currentEquippedRod.gameObject.SetActive(false);
                     Destroy(currentEquippedRod.gameObject);
                 }
 
