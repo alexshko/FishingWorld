@@ -307,6 +307,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 712115628390586103, guid: e61db750a59887b41800adb717feb928,
         type: 3}
+      propertyPath: BtnBuyRef
+      value: 
+      objectReference: {fileID: 3297094665917781813}
+    - target: {fileID: 712115628390586103, guid: e61db750a59887b41800adb717feb928,
+        type: 3}
+      propertyPath: BtnEquipRef
+      value: 
+      objectReference: {fileID: 5043444942695487509}
+    - target: {fileID: 712115628390586103, guid: e61db750a59887b41800adb717feb928,
+        type: 3}
       propertyPath: ItemNameRef
       value: 
       objectReference: {fileID: 6850551139182599747}
@@ -355,10 +365,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: BuyItemMessageText, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 2750692168367111533, guid: e61db750a59887b41800adb717feb928,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4076576350576419595}
+    - target: {fileID: 2750692168367111533, guid: e61db750a59887b41800adb717feb928,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EquipItem
+      objectReference: {fileID: 0}
     - target: {fileID: 4100036874837635641, guid: e61db750a59887b41800adb717feb928,
         type: 3}
       propertyPath: m_TagString
       value: UiCircleSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420622615133114749, guid: e61db750a59887b41800adb717feb928,
+        type: 3}
+      propertyPath: m_Text
+      value: Equip
       objectReference: {fileID: 0}
     - target: {fileID: 7953658227590223361, guid: e61db750a59887b41800adb717feb928,
         type: 3}
@@ -490,6 +515,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewItemBuyMessage
       objectReference: {fileID: 0}
+    - target: {fileID: 7953658228994593337, guid: e61db750a59887b41800adb717feb928,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7953658229426051371, guid: e61db750a59887b41800adb717feb928,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -542,6 +572,18 @@ RectTransform:
 --- !u!224 &6310824161426225168 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7415058936776560108, guid: e61db750a59887b41800adb717feb928,
+    type: 3}
+  m_PrefabInstance: {fileID: 3563220263911044604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3297094665917781813 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2067921692859654857, guid: e61db750a59887b41800adb717feb928,
+    type: 3}
+  m_PrefabInstance: {fileID: 3563220263911044604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5043444942695487509 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8398918119384346089, guid: e61db750a59887b41800adb717feb928,
     type: 3}
   m_PrefabInstance: {fileID: 3563220263911044604}
   m_PrefabAsset: {fileID: 0}

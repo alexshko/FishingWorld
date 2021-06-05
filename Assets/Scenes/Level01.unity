@@ -2154,7 +2154,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137427631}
-  m_LocalRotation: {x: 0.018732918, y: 0.96181154, z: -0.06813634, w: 0.26443365}
+  m_LocalRotation: {x: 0.018732918, y: 0.96181154, z: -0.068136334, w: 0.26443365}
   m_LocalPosition: {x: -7.2000055, y: 7.59878, z: 13.53999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4458,26 +4458,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 82790968}
     m_Modifications:
-    - target: {fileID: 1684190162384078993, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4917616058447722441}
-    - target: {fileID: 1684190162384078993, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EquipItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297094665917781818, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297094666509548916, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_Text
-      value: Buy
-      objectReference: {fileID: 0}
     - target: {fileID: 3957898908720549490, guid: e58810d3b7b8b454d8de02cede2b3164,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4488,16 +4468,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4076576350576419595, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: BtnBuyRef
-      value: 
-      objectReference: {fileID: 4917616058447722443}
-    - target: {fileID: 4076576350576419595, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: BtnEquipRef
-      value: 
-      objectReference: {fileID: 4917616058447722442}
     - target: {fileID: 4917616058183552603, guid: e58810d3b7b8b454d8de02cede2b3164,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4532,11 +4502,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Messages
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917616059559703993, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4917616059559703996, guid: e58810d3b7b8b454d8de02cede2b3164,
         type: 3}
@@ -4648,47 +4613,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6441869443187723605, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6850551140194576325, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812122252382397569, guid: e58810d3b7b8b454d8de02cede2b3164,
-        type: 3}
-      propertyPath: m_Text
-      value: Equip
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e58810d3b7b8b454d8de02cede2b3164, type: 3}
---- !u!114 &4917616058447722441 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4076576350576419595, guid: e58810d3b7b8b454d8de02cede2b3164,
-    type: 3}
-  m_PrefabInstance: {fileID: 4917616058447722440}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99a95326cd6c1d41972696271dae540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &4917616058447722442 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5043444942695487509, guid: e58810d3b7b8b454d8de02cede2b3164,
-    type: 3}
-  m_PrefabInstance: {fileID: 4917616058447722440}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4917616058447722443 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3297094665917781813, guid: e58810d3b7b8b454d8de02cede2b3164,
-    type: 3}
-  m_PrefabInstance: {fileID: 4917616058447722440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5255031458232896205
 PrefabInstance:
   m_ObjectHideFlags: 0
